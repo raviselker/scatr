@@ -1,0 +1,20 @@
+---
+name:  scat
+title: Scatterplot
+jrs:   '1.1'
+
+items:
+    - name: scat
+      title: ''
+      type: Image
+      width: 650
+      height: 500
+      renderFun: .scat
+      clearWith:
+        - x
+        - y
+        - group
+        - marg
+        - line
+        - se
+...

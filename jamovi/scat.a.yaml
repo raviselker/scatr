@@ -1,0 +1,71 @@
+---
+name:  scat
+title: Scatterplot
+menuGroup: scatman
+version: '1.0.0'
+jas: '1.1'
+
+options:
+    - name: data
+      type: Data
+
+    - name: x
+      title: X-Axis
+      type: Variable
+      suggested:
+        - continuous
+      permitted:
+        - continuous
+        - nominal
+        - ordinal
+
+    - name: y
+      title: Y-Axis
+      type: Variable
+      suggested:
+        - continuous
+      permitted:
+        - continuous
+        - nominal
+        - ordinal
+
+    - name: group
+      title: Group
+      type: Variable
+      suggested:
+        - nominal
+      permitted:
+        - nominal
+        - nominaltext
+        - ordinal
+      
+    - name: marg
+      title: Marginals
+      type: List
+      options:
+        - title: None
+          name: none
+        - title: Densities
+          name: dens
+        - title: Boxplots
+          name: box
+      default: none
+      description:
+          R: >
+            `TRUE` or `FALSE` (default), provide density plots on both axes
+            
+    - name: line
+      title: Regression line
+      type: Bool
+      default: false
+      description:
+          R: >
+            `TRUE` or `FALSE` (default), add regression line to plot
+            
+    - name: se
+      title: Standard error
+      type: Bool
+      default: false
+      description:
+          R: >
+            `TRUE` or `FALSE` (default), add standard error for the regression line
