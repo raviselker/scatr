@@ -29,7 +29,7 @@ scatClass <- if (requireNamespace('jmvcore')) R6::R6Class(
             if (is.null(image$state))
                 return(FALSE)
             
-            library('ggstance')
+            # library('ggstance')
             
             data <- image$state
             marg <- self$options$marg
@@ -47,11 +47,11 @@ scatClass <- if (requireNamespace('jmvcore')) R6::R6Class(
             if (marg == 'dens') {
                 xdens <- cowplot::axis_canvas(p, axis='x') +
                     ggjoy::geom_ridgeline(data=data, ggplot2::aes(x, y=0, height=..density.., fill=g),
-                                          stat='xdensity', alpha=0.7, size=.2, trim=FALSE)
+                                          stat='density', alpha=0.5, size=.2, trim=FALSE)
                 
                 ydens <- cowplot::axis_canvas(p, axis='y') +
                     ggjoy::geom_vridgeline(data=data, ggplot2::aes(x=0, y=y, width=..density.., fill=g),
-                                           stat='ydensity', alpha=0.7, size=.2, trim=FALSE)
+                                           stat='ydensity', alpha=0.5, size=.2, trim=FALSE)
                 
                 p <- cowplot::insert_xaxis_grob(p, xdens, grid::unit(.2, "null"), position="top")
                 p <- cowplot::insert_yaxis_grob(p, ydens, grid::unit(.2, "null"), position="right")

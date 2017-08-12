@@ -14,7 +14,7 @@ scatOptions <- if (requireNamespace('jmvcore')) R6::R6Class(
             se = FALSE, ...) {
 
             super$initialize(
-                package='scatman',
+                package='scatr',
                 name='scat',
                 requiresData=TRUE,
                 ...)
@@ -120,7 +120,7 @@ scatBase <- if (requireNamespace('jmvcore')) R6::R6Class(
     public = list(
         initialize = function(options, data=NULL, datasetId="", analysisId="", revision=0) {
             super$initialize(
-                package = 'scatman',
+                package = 'scatr',
                 name = 'scat',
                 version = c(1,0,0),
                 options = options,
