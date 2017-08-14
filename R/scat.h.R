@@ -10,7 +10,7 @@ scatOptions <- if (requireNamespace('jmvcore')) R6::R6Class(
             y = NULL,
             group = NULL,
             marg = "none",
-            line = FALSE,
+            line = "none",
             se = FALSE, ...) {
 
             super$initialize(
@@ -45,7 +45,8 @@ scatOptions <- if (requireNamespace('jmvcore')) R6::R6Class(
                 permitted=list(
                     "nominal",
                     "nominaltext",
-                    "ordinal"))
+                    "ordinal"),
+                default=NULL)
             private$..marg <- jmvcore::OptionList$new(
                 "marg",
                 marg,
@@ -54,10 +55,14 @@ scatOptions <- if (requireNamespace('jmvcore')) R6::R6Class(
                     "dens",
                     "box"),
                 default="none")
-            private$..line <- jmvcore::OptionBool$new(
+            private$..line <- jmvcore::OptionList$new(
                 "line",
                 line,
-                default=FALSE)
+                options=list(
+                    "none",
+                    "linear",
+                    "smooth"),
+                default="none")
             private$..se <- jmvcore::OptionBool$new(
                 "se",
                 se,
@@ -102,8 +107,6 @@ scatResults <- if (requireNamespace('jmvcore')) R6::R6Class(
                 options=options,
                 name="scat",
                 title="",
-                width=650,
-                height=500,
                 renderFun=".scat",
                 clearWith=list(
                     "x",
@@ -142,8 +145,8 @@ scatBase <- if (requireNamespace('jmvcore')) R6::R6Class(
 #' @param group .
 #' @param marg \code{TRUE} or \code{FALSE} (default), provide density plots on 
 #'   both axes 
-#' @param line \code{TRUE} or \code{FALSE} (default), add regression line to 
-#'   plot 
+#' @param line \code{TRUE} or \code{FALSE} (default), provide density plots on 
+#'   both axes 
 #' @param se \code{TRUE} or \code{FALSE} (default), add standard error for the 
 #'   regression line 
 #' @return A results object containing:
@@ -156,9 +159,9 @@ scat <- function(
     data,
     x,
     y,
-    group,
+    group = NULL,
     marg = "none",
-    line = FALSE,
+    line = "none",
     se = FALSE) {
 
     if ( ! requireNamespace('jmvcore'))

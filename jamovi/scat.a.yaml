@@ -38,6 +38,7 @@ options:
         - nominal
         - nominaltext
         - ordinal
+      default: null
       
     - name: marg
       title: Marginals
@@ -55,12 +56,19 @@ options:
             `TRUE` or `FALSE` (default), provide density plots on both axes
             
     - name: line
-      title: Regression line
-      type: Bool
-      default: false
+      title: Regression Line
+      type: List
+      options:
+        - title: None
+          name: none
+        - title: Linear
+          name: linear
+        - title: Smooth
+          name: smooth
+      default: none
       description:
           R: >
-            `TRUE` or `FALSE` (default), add regression line to plot
+            `TRUE` or `FALSE` (default), provide density plots on both axes
             
     - name: se
       title: Standard error

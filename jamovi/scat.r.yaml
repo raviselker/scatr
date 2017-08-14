@@ -7,8 +7,6 @@ items:
     - name: scat
       title: ''
       type: Image
-      width: 650
-      height: 500
       renderFun: .scat
       clearWith:
         - x

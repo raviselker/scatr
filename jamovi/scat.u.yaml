@@ -29,27 +29,54 @@ children:
             name: group
             maxItemCount: 1
             isTarget: true
-  - type: Label
-    label: Marginals
-    children:
-      - type: RadioButton
-        name: marg_none
-        optionName: marg
-        optionPart: none
-      - type: RadioButton
-        name: marg_dens
-        optionName: marg
-        optionPart: dens
-      - type: RadioButton
-        name: marg_box
-        optionName: marg
-        optionPart: box
   - type: LayoutBox
     margin: large
+    stretchFactor: 1
     children:
-      - type: CheckBox
-        name: line
+      - type: LayoutBox
+        margin: large
+        cell:
+          column: 0
+          row: 0
+        stretchFactor: 1
         children:
-          - type: CheckBox
-            name: se
-            enable: (line)
+          - type: Label
+            label: Regression Line
+            children:
+              - type: RadioButton
+                name: line_none
+                optionName: line
+                optionPart: none
+              - type: RadioButton
+                name: line_linear
+                optionName: line
+                optionPart: linear
+              - type: RadioButton
+                name: line_smooth
+                optionName: line
+                optionPart: smooth
+              - type: CheckBox
+                name: se
+                enable: (!line_none)
+      - type: LayoutBox
+        margin: large
+        cell:
+          column: 1
+          row: 0
+        stretchFactor: 1
+        children:
+          - type: Label
+            label: Marginals
+            children:
+              - type: RadioButton
+                name: marg_none
+                optionName: marg
+                optionPart: none
+              - type: RadioButton
+                name: marg_dens
+                optionName: marg
+                optionPart: dens
+              - type: RadioButton
+                name: marg_box
+                optionName: marg
+                optionPart: box
