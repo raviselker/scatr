@@ -6,14 +6,17 @@ jms: '1.0'
 authors:
   - Ravi Selker
 maintainer: Ravi Selker <selker.ravi@gmail.com>
-date: '2017-08-12'
+date: '2017-08-21'
 type: R
-description: Create scatter plots in jamovi.
+description: >-
+  A module that lets you make scatter plots in jamovi. You can find it under the
+  "Exploration" menu.
 analyses:
   - title: Scatterplot
     name: scat
     ns: scatr
-    menuGroup: scatr
+    menuGroup: Exploration
     menuTitle: Scatterplot
+    menuSubgroup: scatr
 
 ...

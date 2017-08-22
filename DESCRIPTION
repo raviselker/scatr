@@ -1,6 +1,6 @@
 Package: scatr
 Type: Package
-Title: Create scatter plots with marginals
+Title: Create an easy to produce scatter plot
 Version: 1.0.0
 Author: Ravi Selker
 Maintainer: Ravi Selker <selker.ravi@gmail.com>

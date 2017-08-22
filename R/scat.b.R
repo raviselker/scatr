@@ -42,65 +42,66 @@ scatClass <- if (requireNamespace('jmvcore')) R6::R6Class(
             line <- self$options$line
             method <- if (line == 'linear') 'lm' else 'auto'
             
-            p <- ggplot2::ggplot(data, ggplot2::aes(x=x, y=y, color=g, fill=g, shape=g)) + 
-                ggplot2::geom_point(alpha=.8, size=2.5) + ggtheme +
-                ggplot2::labs(x=self$options$x, y=self$options$y, fill=self$options$group, color=self$options$group, shape=self$options$group)
+            base::suppressMessages({
+                base::suppressWarnings({
+                    
+                    p <- ggplot2::ggplot(data, ggplot2::aes(x=x, y=y, color=g, fill=g, shape=g)) + 
+                        ggplot2::geom_point(alpha=.8, size=2.5) + ggtheme +
+                        ggplot2::labs(x=self$options$x, y=self$options$y, fill=self$options$group, color=self$options$group, shape=self$options$group)
+                    
+                    if (line != 'none')
+                        p <- p + ggplot2::geom_smooth(method = method, se = self$options$se)
+                    
+        
+                    colors <- NULL
+                    if (is.null(self$options$group)) {
+                        colors <- list(ggplot2::scale_color_manual(values=theme$color[1]),
+                                       ggplot2::scale_fill_manual(values=theme$fill[2]), 
+                                       ggplot2::scale_shape_manual(values=21))
+                        p <- p + ggplot2::theme(legend.position = 'none') + colors
+                    }
+                    
+                    if (marg == 'dens') {
+                        xdens <- cowplot::axis_canvas(p, axis='x') +
+                            ggjoy::geom_ridgeline(data=data, ggplot2::aes(x, y=0, height=..density.., fill=g),
+                                                  stat='density', alpha=0.5, size=.2, trim=FALSE) + colors
+                        
+                        ydens <- cowplot::axis_canvas(p, axis='y') +
+                            ggjoy::geom_vridgeline(data=data, ggplot2::aes(x=0, y=y, width=..density.., fill=g),
+                                                   stat='ydensity', alpha=0.5, size=.2, trim=FALSE) + colors
+                        
+                        p <- cowplot::insert_xaxis_grob(p, xdens, grid::unit(.2, "null"), position="top")
+                        p <- cowplot::insert_yaxis_grob(p, ydens, grid::unit(.2, "null"), position="right")
+                        
+                        p <- cowplot::ggdraw(p)    
+                    
+                    } else if (marg == 'box') {
+                        
+                        themeBox <- ggplot2::theme(panel.grid.major = ggplot2::element_blank(),
+                                                   panel.grid.minor = ggplot2::element_blank(),
+                                                   strip.background = ggplot2::element_rect(fill='transparent', color=NA),
+                                                   panel.background=ggplot2::element_rect(fill='transparent', color=NA))
+                        
+                        xdens <- ggplot2::ggplot() +
+                            ggplot2::geom_boxplot(data=data, ggplot2::aes(x=g, y=x, fill=g, color=g), position=ggplot2::position_dodge(0.8),
+                                                  width=0.5, alpha=0.9, notch=TRUE) + themeBox + colors +
+                            ggplot2::coord_flip()
+                        
+                        ydens <- ggplot2::ggplot() +
+                            ggplot2::geom_boxplot(data=data, ggplot2::aes(x=g, y=y, fill=g, color=g), position=ggplot2::position_dodge(0.8),
+                                                  width=0.5, alpha=0.9, notch=TRUE) + themeBox + colors
+                        
+                        nLevels <- length(levels(data$g))
+                        
+                        p <- cowplot::insert_xaxis_grob(p, xdens, grid::unit(.05 * nLevels, "null"), position="top")
+                        p <- cowplot::insert_yaxis_grob(p, ydens, grid::unit(.05 * nLevels, "null"), position="right")
+                        
+                        p <- cowplot::ggdraw(p)    
+                    }
             
-            if (line != 'none')
-                p <- p + ggplot2::geom_smooth(method = method, se = self$options$se)
-            
-
-            colors <- NULL
-            if (is.null(self$options$group)) {
-                colors <- list(ggplot2::scale_color_manual(values=theme$color[1]),
-                               ggplot2::scale_fill_manual(values=theme$fill[2]), 
-                               ggplot2::scale_shape_manual(values=21))
-                p <- p + ggplot2::theme(legend.position = 'none') + colors
-            } else {
-                # colors <- list(ggplot2::scale_color_grey(),
-                #                ggplot2::scale_fill_grey())
-                # p <- p + colors
-            }
-            
-            if (marg == 'dens') {
-                xdens <- cowplot::axis_canvas(p, axis='x') +
-                    ggjoy::geom_ridgeline(data=data, ggplot2::aes(x, y=0, height=..density.., fill=g),
-                                          stat='density', alpha=0.5, size=.2, trim=FALSE) + colors
-                
-                ydens <- cowplot::axis_canvas(p, axis='y') +
-                    ggjoy::geom_vridgeline(data=data, ggplot2::aes(x=0, y=y, width=..density.., fill=g),
-                                           stat='ydensity', alpha=0.5, size=.2, trim=FALSE) + colors
-                
-                p <- cowplot::insert_xaxis_grob(p, xdens, grid::unit(.2, "null"), position="top")
-                p <- cowplot::insert_yaxis_grob(p, ydens, grid::unit(.2, "null"), position="right")
-                
-                p <- cowplot::ggdraw(p)    
-            
-            } else if (marg == 'box') {
-                
-                themeBox <- ggplot2::theme(panel.grid.major = ggplot2::element_blank(),
-                                           panel.grid.minor = ggplot2::element_blank(),
-                                           strip.background = ggplot2::element_rect(fill='transparent', color=NA),
-                                           panel.background=ggplot2::element_rect(fill='transparent', color=NA))
-                
-                xdens <- ggplot2::ggplot() +
-                    ggplot2::geom_boxplot(data=data, ggplot2::aes(x=g, y=x, fill=g, color=g), position=ggplot2::position_dodge(0.8),
-                                          width=0.5, alpha=0.9, notch=TRUE) + themeBox + colors +
-                    ggplot2::coord_flip()
-                
-                ydens <- ggplot2::ggplot() +
-                    ggplot2::geom_boxplot(data=data, ggplot2::aes(x=g, y=y, fill=g, color=g), position=ggplot2::position_dodge(0.8),
-                                          width=0.5, alpha=0.9, notch=TRUE) + themeBox + colors
-                
-                nLevels <- length(levels(data$g))
-                
-                p <- cowplot::insert_xaxis_grob(p, xdens, grid::unit(.05 * nLevels, "null"), position="top")
-                p <- cowplot::insert_yaxis_grob(p, ydens, grid::unit(.05 * nLevels, "null"), position="right")
-                
-                p <- cowplot::ggdraw(p)    
-            }
-            
-            print(p)
+                    print(p)    
+                })
+            })
             
             TRUE
             
@@ -158,7 +159,7 @@ scatClass <- if (requireNamespace('jmvcore')) R6::R6Class(
     public=list(
         asSource=function() {
             
-            paste0("This module does not yet support syntax mode.")
+            paste0("This module does not support syntax mode yet.")
             
         })
 )

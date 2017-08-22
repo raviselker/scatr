@@ -1,7 +1,8 @@
 ---
 name:  scat
 title: Scatterplot
-menuGroup: scatr
+menuGroup: Exploration
+menuSubgroup: scatr
 version: '1.0.0'
 jas: '1.1'
 
