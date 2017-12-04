@@ -1,12 +1,26 @@
 Package: scatr
 Type: Package
-Title: Create an easy to produce scatter plot
-Version: 1.0.0
+Title: Create Scatter Plots with Marginal Density or Box Plots
+Version: 1.0.1
+Date: 2017-12-05
 Author: Ravi Selker
 Maintainer: Ravi Selker <selker.ravi@gmail.com>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Description: Allows you to make clean, good-looking scatter plots with the option to 
+    easily add marginal density or box plots on the axes. It is also available as a module for 'jamovi'
+    (see <https://www.jamovi.org> for more information). 'Scatr' is based on the 
+    'cowplot' package by Claus O. Wilke and the 'ggplot2' package by Hadley Wickham.
+License: GPL (>= 2)
 Encoding: UTF-8
 LazyData: true
-Imports: jmvcore (>= 0.5.5), R6, cowplot, ggstance, ggjoy
+Depends:
+    R (>= 3.2)
+Imports: 
+    jmvcore (>= 0.8.0),
+    R6, 
+    ggplot2, 
+    cowplot, 
+    ggstance, 
+    ggridges
+RoxygenNote: 6.0.1
+URL: https://github.com/raviselker/scatr
+BugReports: https://github.com/raviselker/scatr/issues

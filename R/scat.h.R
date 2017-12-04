@@ -18,7 +18,7 @@ scatOptions <- if (requireNamespace('jmvcore')) R6::R6Class(
                 name='scat',
                 requiresData=TRUE,
                 ...)
-        
+
             private$..x <- jmvcore::OptionVariable$new(
                 "x",
                 x,
@@ -67,7 +67,7 @@ scatOptions <- if (requireNamespace('jmvcore')) R6::R6Class(
                 "se",
                 se,
                 default=FALSE)
-        
+
             self$.addOption(private$..x)
             self$.addOption(private$..y)
             self$.addOption(private$..group)
@@ -94,16 +94,15 @@ scatOptions <- if (requireNamespace('jmvcore')) R6::R6Class(
 scatResults <- if (requireNamespace('jmvcore')) R6::R6Class(
     inherit = jmvcore::Group,
     active = list(
-        scat = function() private$..scat),
-    private = list(
-        ..scat = NA),
+        scat = function() private$.items[["scat"]]),
+    private = list(),
     public=list(
         initialize=function(options) {
             super$initialize(
                 options=options,
                 name="",
                 title="Scatterplot")
-            private$..scat <- jmvcore::Image$new(
+            self$add(jmvcore::Image$new(
                 options=options,
                 name="scat",
                 title="",
@@ -114,8 +113,7 @@ scatResults <- if (requireNamespace('jmvcore')) R6::R6Class(
                     "group",
                     "marg",
                     "line",
-                    "se"))
-            self$add(private$..scat)}))
+                    "se")))}))
 
 scatBase <- if (requireNamespace('jmvcore')) R6::R6Class(
     "scatBase",
@@ -138,20 +136,35 @@ scatBase <- if (requireNamespace('jmvcore')) R6::R6Class(
 
 #' Scatterplot
 #'
-#' 
-#' @param data .
-#' @param x .
-#' @param y .
-#' @param group .
-#' @param marg \code{TRUE} or \code{FALSE} (default), provide density plots on 
-#'   both axes 
-#' @param line \code{TRUE} or \code{FALSE} (default), provide density plots on 
-#'   both axes 
-#' @param se \code{TRUE} or \code{FALSE} (default), add standard error for the 
-#'   regression line 
+#' Function for making clean, good looking scatter plots with the option to 
+#' add marginal denisty or box plots.
+#'
+#' @examples
+#' set.seed(1337)
+#'
+#' X <- rnorm(100)
+#' Y <- 0.5*X + rnorm(100)
+#' dat <- data.frame(X = X, Y = Y)
+#'
+#' scat(dat, x = 'X', y = 'Y', line = 'linear', se = TRUE, marg = 'dens')
+#'
+#' @param data the data as a data frame
+#' @param x a string naming the variable from \code{data} that contains the  x
+#'   coordinates of the points in the plot, variable must be numeric
+#' @param y a string naming the variable from \code{data} that contains the  y
+#'   coordinates of the points in the plot, variable must be numeric
+#' @param group a string naming the variable from \code{data} that represents
+#'   the  grouping variable
+#' @param marg \code{none} (default), \code{dens}, or \code{box}, provide
+#'   respectively no plots, density plots, or box plots on the axes
+#' @param line \code{none} (default), \code{linear}, or \code{smooth}, provide
+#'   respectively no regression line,  a linear regression line, or a smoothed
+#'   regression line
+#' @param se \code{TRUE} or \code{FALSE} (default), show the standard error
+#'   for the regression line
 #' @return A results object containing:
 #' \tabular{llllll}{
-#'   \code{results$scat} \tab \tab \tab \tab \tab an image \cr
+#'   \code{results$scat} \tab \tab \tab \tab \tab a scatter plot \cr
 #' }
 #'
 #' @export

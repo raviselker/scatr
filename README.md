@@ -1,5 +1,19 @@
 # scatr
 
-This jamovi module allows you to create nice scatter plots in [jamovi](https://www.jamovi.org). The module is still in beta development so any comments and contributions are well appreciated.
+`scatr` allows you to make clean, good-looking scatter plots in [jamovi](https://www.jamovi.org) **and** R. With `scatr` you can easily add marginal density or box plots, and linear regression lines to your scatter plots.
 
-You can already try out the module by downloading the [scatr.jmo](https://github.com/raviselker/scatr/raw/master/scatr.jmo) file and [sideloading](http://imgur.com/a/mFv7t) it into jamovi.
+## Installation in jamovi
+
+You can install `scatr` directly from the jamovi library.
+
+## Installation in R
+
+Stable release:
+```r
+install.packages("scatr")
+```
+Latest development version: 
+```r
+library("devtools")
+install_github("raviselker/scatr")
+```

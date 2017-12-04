@@ -63,11 +63,11 @@ scatClass <- if (requireNamespace('jmvcore')) R6::R6Class(
                     
                     if (marg == 'dens') {
                         xdens <- cowplot::axis_canvas(p, axis='x') +
-                            ggjoy::geom_ridgeline(data=data, ggplot2::aes(x, y=0, height=..density.., fill=g),
+                            ggridges::geom_ridgeline(data=data, ggplot2::aes(x, y=0, height=..density.., fill=g),
                                                   stat='density', alpha=0.5, size=.2, trim=FALSE) + colors
                         
                         ydens <- cowplot::axis_canvas(p, axis='y') +
-                            ggjoy::geom_vridgeline(data=data, ggplot2::aes(x=0, y=y, width=..density.., fill=g),
+                            ggridges::geom_vridgeline(data=data, ggplot2::aes(x=0, y=y, width=..density.., fill=g),
                                                    stat='ydensity', alpha=0.5, size=.2, trim=FALSE) + colors
                         
                         p <- cowplot::insert_xaxis_grob(p, xdens, grid::unit(.2, "null"), position="top")
@@ -153,13 +153,6 @@ scatClass <- if (requireNamespace('jmvcore')) R6::R6Class(
             height <- title + ticks + yaxis + marg + post
             
             return(list(width=width, height=height))
-            
-        }),
-    
-    public=list(
-        asSource=function() {
-            
-            paste0("This module does not support syntax mode yet.")
             
         })
 )

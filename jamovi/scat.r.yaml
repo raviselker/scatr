@@ -7,6 +7,7 @@ items:
     - name: scat
       title: ''
       type: Image
+      description: a scatter plot
       renderFun: .scat
       clearWith:
         - x
