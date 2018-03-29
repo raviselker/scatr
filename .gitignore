@@ -1,7 +1,9 @@
 
-.Rbuildignore
 .Rproj.user
 .Rhistory
+*.tar.gz
+..Rcheck
 
-build
+build/
+
 *.jmo

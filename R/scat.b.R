@@ -1,5 +1,5 @@
 
-scatClass <- if (requireNamespace('jmvcore')) R6::R6Class(
+scatClass <- R6::R6Class(
     "scatClass",
     inherit = scatBase,
     private = list(

@@ -1,7 +1,7 @@
 ---
 title: scatr
 name: scatr
-version: 1.0.1
+version: 1.1.0
 jms: '1.0'
 authors:
   - Ravi Selker
@@ -22,5 +22,12 @@ analyses:
     description: >-
       Function for making clean, good looking scatter plots with the option to
       add marginal denisty or box plots.
+  - title: Pareto Chart
+    name: pareto
+    ns: scatr
+    menuGroup: Exploration
+    menuTitle: Pareto Chart
+    menuSubgroup: scatr
+    description: Function for making pareto charts.
 
 ...

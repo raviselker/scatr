@@ -1,0 +1,55 @@
+---
+name:  pareto
+title: Pareto Chart
+menuGroup: Exploration
+menuSubgroup: scatr
+version: '1.0.0'
+jas: '1.1'
+
+description:
+    main: Function for making pareto charts.
+    R:
+        dontrun: false
+        usage: |
+            set.seed(1337)
+            
+            X <- sample(c('A','B','C','D','E','F'), 100, replace=TRUE)
+            dat <- data.frame(X = X)
+            
+            pareto(dat, x = 'X')
+
+options:
+    - name: data
+      type: Data
+      description:
+          R: the data as a data frame
+
+    - name: x
+      title: X-Axis
+      type: Variable
+      suggested:
+        - nominal
+      permitted:
+        - nominal
+        - nominaltext
+        - ordinal
+      description:
+          R: >
+            a string naming the variable from `data` that contains the 
+            values used for the chart
+            
+    - name: counts
+      title: 'Counts (optional)'
+      type: Variable
+      default:
+      suggested:
+        - continuous
+      permitted:
+        - continuous
+        - nominal
+        - ordinal
+      description:
+          R: >
+            a string naming the variable from `data` that contains the 
+            counts for the values (optional)
+...

@@ -1,0 +1,16 @@
+---
+name:  pareto
+title: Pareto Chart
+jrs:   '1.1'
+
+items:
+    - name: pareto
+      title: ''
+      type: Image
+      description: a Pareto chart
+      renderFun: .pareto
+      clearWith:
+        - x
+        - counts
+
+...
