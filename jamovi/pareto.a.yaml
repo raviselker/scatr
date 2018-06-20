@@ -3,8 +3,8 @@ name:  pareto
 title: Pareto Chart
 menuGroup: Exploration
 menuSubgroup: scatr
-version: '1.0.0'
-jas: '1.1'
+version: '1.1.0'
+jas: '1.2'
 
 description:
     main: Function for making pareto charts.
@@ -30,9 +30,7 @@ options:
       suggested:
         - nominal
       permitted:
-        - nominal
-        - nominaltext
-        - ordinal
+        - factor
       description:
           R: >
             a string naming the variable from `data` that contains the 
@@ -45,11 +43,20 @@ options:
       suggested:
         - continuous
       permitted:
-        - continuous
-        - nominal
-        - ordinal
+        - numeric
       description:
           R: >
             a string naming the variable from `data` that contains the 
             counts for the values (optional)
+            
+    - name: angle
+      title: Angle of x-axis labels
+      type: Number
+      min: 0
+      max: 45
+      default: 0
+      description:
+          R: >
+            a number from 0 to 45 defining the angle of the x-axis labels, 
+            where 0 degrees represents completely horizontal labels.
 ...

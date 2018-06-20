@@ -1,8 +1,8 @@
 Package: scatr
 Type: Package
 Title: Create Scatter Plots with Marginal Density or Box Plots
-Version: 1.0.1
-Date: 2017-12-05
+Version: 1.1.0
+Date: 2018-06-20
 Author: Ravi Selker
 Maintainer: Ravi Selker <selker.ravi@gmail.com>
 Description: Allows you to make clean, good-looking scatter plots with the option to 

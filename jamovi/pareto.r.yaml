@@ -12,5 +12,6 @@ items:
       clearWith:
         - x
         - counts
+        - angle
 
 ...

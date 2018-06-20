@@ -25,27 +25,21 @@ scatOptions <- if (requireNamespace('jmvcore')) R6::R6Class(
                 suggested=list(
                     "continuous"),
                 permitted=list(
-                    "continuous",
-                    "nominal",
-                    "ordinal"))
+                    "numeric"))
             private$..y <- jmvcore::OptionVariable$new(
                 "y",
                 y,
                 suggested=list(
                     "continuous"),
                 permitted=list(
-                    "continuous",
-                    "nominal",
-                    "ordinal"))
+                    "numeric"))
             private$..group <- jmvcore::OptionVariable$new(
                 "group",
                 group,
                 suggested=list(
                     "nominal"),
                 permitted=list(
-                    "nominal",
-                    "nominaltext",
-                    "ordinal"),
+                    "factor"),
                 default=NULL)
             private$..marg <- jmvcore::OptionList$new(
                 "marg",

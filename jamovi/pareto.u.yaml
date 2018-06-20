@@ -2,7 +2,7 @@ title: Pareto Chart
 name: pareto
 jus: '2.0'
 stage: 0
-compilerMode: aggressive
+compilerMode: tame
 children:
   - type: VariableSupplier
     persistentItems: false
@@ -22,3 +22,13 @@ children:
             name: counts
             maxItemCount: 1
             isTarget: true
+  - type: LayoutBox
+    margin: large
+    children:
+      - type: TextBox
+        name: angle
+        format: number
+        inputPattern: '[0-9]+'
+        suggestedValues:
+          - value: 0
+          - value: 45

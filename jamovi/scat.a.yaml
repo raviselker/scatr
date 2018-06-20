@@ -4,7 +4,7 @@ title: Scatterplot
 menuGroup: Exploration
 menuSubgroup: scatr
 version: '1.0.0'
-jas: '1.1'
+jas: '1.2'
 
 description:
     main: Function for making clean, good looking scatter plots with the option to add marginal denisty or box plots.
@@ -31,9 +31,7 @@ options:
       suggested:
         - continuous
       permitted:
-        - continuous
-        - nominal
-        - ordinal
+        - numeric
       description:
           R: >
             a string naming the variable from `data` that contains the 
@@ -45,9 +43,7 @@ options:
       suggested:
         - continuous
       permitted:
-        - continuous
-        - nominal
-        - ordinal
+        - numeric
       description:
           R: >
             a string naming the variable from `data` that contains the 
@@ -59,9 +55,7 @@ options:
       suggested:
         - nominal
       permitted:
-        - nominal
-        - nominaltext
-        - ordinal
+        - factor
       default: null
       description:
           R: >

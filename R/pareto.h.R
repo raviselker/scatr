@@ -7,7 +7,8 @@ paretoOptions <- if (requireNamespace('jmvcore')) R6::R6Class(
     public = list(
         initialize = function(
             x = NULL,
-            counts = NULL, ...) {
+            counts = NULL,
+            angle = 0, ...) {
 
             super$initialize(
                 package='scatr',
@@ -21,9 +22,7 @@ paretoOptions <- if (requireNamespace('jmvcore')) R6::R6Class(
                 suggested=list(
                     "nominal"),
                 permitted=list(
-                    "nominal",
-                    "nominaltext",
-                    "ordinal"))
+                    "factor"))
             private$..counts <- jmvcore::OptionVariable$new(
                 "counts",
                 counts,
@@ -31,19 +30,26 @@ paretoOptions <- if (requireNamespace('jmvcore')) R6::R6Class(
                 suggested=list(
                     "continuous"),
                 permitted=list(
-                    "continuous",
-                    "nominal",
-                    "ordinal"))
+                    "numeric"))
+            private$..angle <- jmvcore::OptionNumber$new(
+                "angle",
+                angle,
+                min=0,
+                max=45,
+                default=0)
 
             self$.addOption(private$..x)
             self$.addOption(private$..counts)
+            self$.addOption(private$..angle)
         }),
     active = list(
         x = function() private$..x$value,
-        counts = function() private$..counts$value),
+        counts = function() private$..counts$value,
+        angle = function() private$..angle$value),
     private = list(
         ..x = NA,
-        ..counts = NA)
+        ..counts = NA,
+        ..angle = NA)
 )
 
 paretoResults <- if (requireNamespace('jmvcore')) R6::R6Class(
@@ -64,7 +70,8 @@ paretoResults <- if (requireNamespace('jmvcore')) R6::R6Class(
                 renderFun=".pareto",
                 clearWith=list(
                     "x",
-                    "counts")))}))
+                    "counts",
+                    "angle")))}))
 
 paretoBase <- if (requireNamespace('jmvcore')) R6::R6Class(
     "paretoBase",
@@ -74,7 +81,7 @@ paretoBase <- if (requireNamespace('jmvcore')) R6::R6Class(
             super$initialize(
                 package = 'scatr',
                 name = 'pareto',
-                version = c(1,0,0),
+                version = c(1,1,0),
                 options = options,
                 results = paretoResults$new(options=options),
                 data = data,
@@ -102,6 +109,8 @@ paretoBase <- if (requireNamespace('jmvcore')) R6::R6Class(
 #'   values used for the chart
 #' @param counts a string naming the variable from \code{data} that contains
 #'   the  counts for the values (optional)
+#' @param angle a number from 0 to 45 defining the angle of the x-axis labels,
+#'   where 0 degrees represents completely horizontal labels.
 #' @return A results object containing:
 #' \tabular{llllll}{
 #'   \code{results$pareto} \tab \tab \tab \tab \tab a Pareto chart \cr
@@ -111,14 +120,16 @@ paretoBase <- if (requireNamespace('jmvcore')) R6::R6Class(
 pareto <- function(
     data,
     x,
-    counts = NULL) {
+    counts = NULL,
+    angle = 0) {
 
     if ( ! requireNamespace('jmvcore'))
         stop('pareto requires jmvcore to be installed (restart may be required)')
 
     options <- paretoOptions$new(
         x = x,
-        counts = counts)
+        counts = counts,
+        angle = angle)
 
     results <- paretoResults$new(
         options = options)

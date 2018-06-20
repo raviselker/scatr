@@ -68,7 +68,8 @@ paretoClass <- R6::R6Class(
                 ggplot2::labs(x=labels$x, y=labels$y) + 
                 ggtheme
             
-            # p <- p + ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 45, hjust = 1))
+            if (self$options$angle > 0)
+                p <- p + ggplot2::theme(axis.text.x = ggplot2::element_text(angle = self$options$angle, hjust = 1))
             
             print(p)
             
@@ -79,15 +80,17 @@ paretoClass <- R6::R6Class(
             
             x <- self$options$x
             
-            if ( ! is.null(x)) {
-                levels <- levels(self$data[[self$options$x]])
-                nLevels <- length(levels)
-            } else {
-                nLevels <- 0
-            }
+            if (is.null(x))
+                return(list(width=450, height=350))
             
-            width <- max(450, nLevels * 60)
-            height <- 350
+            levels <- levels(self$data[[self$options$x]])
+            nLevels <- length(levels)
+            nCharLevels <- max(nchar(levels))
+            
+            xLabels <- nCharLevels * .1 * self$options$angle
+
+            width <- max(450, nLevels * 25)
+            height <- 350 + xLabels
             
             return(list(width=width, height=height))
                 
