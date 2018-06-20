@@ -45,9 +45,9 @@ scatClass <- R6::R6Class(
             base::suppressMessages({
                 base::suppressWarnings({
                     
-                    p <- ggplot2::ggplot(data, ggplot2::aes(x=x, y=y, color=g, fill=g, shape=g)) + 
+                    p <- ggplot2::ggplot(data, ggplot2::aes(x=x, y=y, color=g, fill=g)) + 
                         ggplot2::geom_point(alpha=.8, size=2.5) + ggtheme +
-                        ggplot2::labs(x=self$options$x, y=self$options$y, fill=self$options$group, color=self$options$group, shape=self$options$group)
+                        ggplot2::labs(x=self$options$x, y=self$options$y, fill=self$options$group, color=self$options$group)
                     
                     if (line != 'none')
                         p <- p + ggplot2::geom_smooth(method = method, se = self$options$se)
