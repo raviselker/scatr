@@ -64,11 +64,11 @@ scatClass <- R6::R6Class(
                     if (marg == 'dens') {
                         xdens <- cowplot::axis_canvas(p, axis='x') +
                             ggridges::geom_ridgeline(data=data, ggplot2::aes(x, y=0, height=..density.., fill=g),
-                                                  stat='density', alpha=0.5, size=.2, trim=FALSE) + colors
+                                                  stat='density', alpha=0.5, size=.2, trim=FALSE) + ggtheme + colors 
                         
                         ydens <- cowplot::axis_canvas(p, axis='y') +
                             ggridges::geom_vridgeline(data=data, ggplot2::aes(x=0, y=y, width=..density.., fill=g),
-                                                   stat='ydensity', alpha=0.5, size=.2, trim=FALSE) + colors
+                                                   stat='ydensity', alpha=0.5, size=.2, trim=FALSE) + ggtheme + colors
                         
                         p <- cowplot::insert_xaxis_grob(p, xdens, grid::unit(.2, "null"), position="top")
                         p <- cowplot::insert_yaxis_grob(p, ydens, grid::unit(.2, "null"), position="right")
@@ -84,12 +84,12 @@ scatClass <- R6::R6Class(
                         
                         xdens <- ggplot2::ggplot() +
                             ggplot2::geom_boxplot(data=data, ggplot2::aes(x=g, y=x, fill=g, color=g), position=ggplot2::position_dodge(0.8),
-                                                  width=0.5, alpha=0.9, notch=TRUE) + themeBox + colors +
+                                                  width=0.5, alpha=0.9, notch=TRUE) + ggtheme + themeBox + colors +
                             ggplot2::coord_flip()
                         
                         ydens <- ggplot2::ggplot() +
                             ggplot2::geom_boxplot(data=data, ggplot2::aes(x=g, y=y, fill=g, color=g), position=ggplot2::position_dodge(0.8),
-                                                  width=0.5, alpha=0.9, notch=TRUE) + themeBox + colors
+                                                  width=0.5, alpha=0.9, notch=TRUE) + ggtheme + themeBox + colors
                         
                         nLevels <- length(levels(data$g))
                         
