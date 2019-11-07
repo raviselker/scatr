@@ -28,7 +28,6 @@ children:
       - type: TextBox
         name: angle
         format: number
-        inputPattern: '[0-9]+'
         suggestedValues:
           - value: 0
           - value: 45

@@ -71,9 +71,7 @@ paretoClass <- R6::R6Class(
             if (self$options$angle > 0)
                 p <- p + ggplot2::theme(axis.text.x = ggplot2::element_text(angle = self$options$angle, hjust = 1))
             
-            print(p)
-            
-            TRUE
+            return(p)
             
         },
         .plotSize = function() {

@@ -174,6 +174,18 @@ scat <- function(
     if ( ! requireNamespace('jmvcore'))
         stop('scat requires jmvcore to be installed (restart may be required)')
 
+    if ( ! missing(x)) x <- jmvcore::resolveQuo(jmvcore::enquo(x))
+    if ( ! missing(y)) y <- jmvcore::resolveQuo(jmvcore::enquo(y))
+    if ( ! missing(group)) group <- jmvcore::resolveQuo(jmvcore::enquo(group))
+    if (missing(data))
+        data <- jmvcore::marshalData(
+            parent.frame(),
+            `if`( ! missing(x), x, NULL),
+            `if`( ! missing(y), y, NULL),
+            `if`( ! missing(group), group, NULL))
+
+    for (v in group) if (v %in% names(data)) data[[v]] <- as.factor(data[[v]])
+
     options <- scatOptions$new(
         x = x,
         y = y,
@@ -181,9 +193,6 @@ scat <- function(
         marg = marg,
         line = line,
         se = se)
-
-    results <- scatResults$new(
-        options = options)
 
     analysis <- scatClass$new(
         options = options,

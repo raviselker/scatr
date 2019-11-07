@@ -126,13 +126,20 @@ pareto <- function(
     if ( ! requireNamespace('jmvcore'))
         stop('pareto requires jmvcore to be installed (restart may be required)')
 
+    if ( ! missing(x)) x <- jmvcore::resolveQuo(jmvcore::enquo(x))
+    if ( ! missing(counts)) counts <- jmvcore::resolveQuo(jmvcore::enquo(counts))
+    if (missing(data))
+        data <- jmvcore::marshalData(
+            parent.frame(),
+            `if`( ! missing(x), x, NULL),
+            `if`( ! missing(counts), counts, NULL))
+
+    for (v in x) if (v %in% names(data)) data[[v]] <- as.factor(data[[v]])
+
     options <- paretoOptions$new(
         x = x,
         counts = counts,
         angle = angle)
-
-    results <- paretoResults$new(
-        options = options)
 
     analysis <- paretoClass$new(
         options = options,

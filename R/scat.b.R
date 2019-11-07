@@ -96,15 +96,12 @@ scatClass <- R6::R6Class(
                         p <- cowplot::insert_xaxis_grob(p, xdens, grid::unit(.05 * nLevels, "null"), position="top")
                         p <- cowplot::insert_yaxis_grob(p, ydens, grid::unit(.05 * nLevels, "null"), position="right")
                         
-                        p <- cowplot::ggdraw(p)    
+                        p <- cowplot::ggdraw(p)
                     }
             
-                    print(p)    
+                    return(p)    
                 })
             })
-            
-            TRUE
-            
         },
         .plotSize = function() {
             

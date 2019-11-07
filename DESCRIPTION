@@ -1,8 +1,8 @@
 Package: scatr
 Type: Package
 Title: Create Scatter Plots with Marginal Density or Box Plots
-Version: 1.1.1
-Date: 2018-07-27
+Version: 1.2.0
+Date: 2019-11-07
 Author: Ravi Selker
 Maintainer: Ravi Selker <selker.ravi@gmail.com>
 Description: Allows you to make clean, good-looking scatter plots with the option to 
@@ -15,7 +15,7 @@ LazyData: true
 Depends:
     R (>= 3.2)
 Imports: 
-    jmvcore (>= 0.8.0),
+    jmvcore (>= 1.0.0),
     R6, 
     ggplot2, 
     cowplot, 
