@@ -2,37 +2,48 @@
 scatClass <- R6::R6Class(
     "scatClass",
     inherit = scatBase,
+    #### Active bindings ----
+    active = list(
+        dataProcessed = function() {
+            if (is.null(private$.dataProcessed)) {
+                x <- self$options$x
+                y <- self$options$y
+                g <- self$options$group
+                
+                if (! is.null(x) && ! is.null(y)) {
+                    xCol <- jmvcore::toNumeric(self$data[[x]])
+                    yCol <- jmvcore::toNumeric(self$data[[y]])
+                    if (is.null(g)) {
+                        gCol <- rep("var", length(xCol))
+                    } else {
+                        gCol <- factor(self$data[[g]])
+                    }
+                    
+                    data <- data.frame(x=xCol, y=yCol, g=gCol)
+                    data <- jmvcore::naOmit(data)
+                    private$.dataProcessed <- data
+                }
+            }
+            return(private$.dataProcessed)
+        }
+    ),
     private = list(
+        #### Member variables ----
+        .dataProcessed = NULL,
+
+        #### Init function ----
         .init = function() {
             image <- self$results$scat
             size <- private$.plotSize()
             image$setSize(size$width, size$height)
         },
-        .run = function() {
-            x <- self$options$x
-            y <- self$options$y
-            g <- self$options$group
-            
-            if ( ! is.null(x) && ! is.null(y)) {
-                xCol <- jmvcore::toNumeric(self$data[[x]])
-                yCol <- jmvcore::toNumeric(self$data[[y]])
-                gCol <- ifelse(
-                    is.null(g), rep("var", length(xCol)), factor(self$data[[g]])
-                )
-                
-                data <- data.frame(x=xCol, y=yCol, g=gCol)
-                
-                data <- jmvcore::naOmit(data)
-                
-                image <- self$results$scat
-                image$setState(data)
-            }
-        },
+        
+        #### Plot function ----
         .scat = function(image, ggtheme, theme, ...) {
-            if (is.null(image$state))
+            if (is.null(self$dataProcessed))
                 return(FALSE)
             
-            data <- image$state
+            data <- self$dataProcessed
             marg <- self$options$marg
             line <- self$options$line
             method <- ifelse(line == "linear", "lm", "auto")
@@ -114,8 +125,9 @@ scatClass <- R6::R6Class(
                                 fill="transparent", color=NA
                             ),
                             panel.background=ggplot2::element_rect(
-                                fill="transparent", color=NA)
+                                fill="transparent", color=NA
                             )
+                        )
                         
                         xdens <- ggplot2::ggplot() +
                             ggplot2::geom_boxplot(
@@ -148,12 +160,14 @@ scatClass <- R6::R6Class(
                         
                         p <- cowplot::insert_xaxis_grob(
                             p, 
-                            xdens, grid::unit(.05 * nLevels, "null"), 
+                            xdens, 
+                            grid::unit(.05 * nLevels, "null"), 
                             position="top"
                         )
                         p <- cowplot::insert_yaxis_grob(
                             p, 
-                            ydens, grid::unit(.05 * nLevels, "null"), 
+                            ydens, 
+                            grid::unit(.05 * nLevels, "null"), 
                             position="right"
                         )
                         
@@ -163,6 +177,8 @@ scatClass <- R6::R6Class(
                 })
             })
         },
+        
+        #### Helper functions ----
         .plotSize = function() {
             g <- self$options$group
             

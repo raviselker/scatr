@@ -3,6 +3,7 @@ paretoClass <- R6::R6Class(
     "paretoClass",
     inherit = paretoBase,
     private = list(
+        #### Init + run functions ----
         .init = function() {
             image <- self$results$pareto
             size <- private$.plotSize()
@@ -36,6 +37,8 @@ paretoClass <- R6::R6Class(
                 image$setState(list(df=df, labels=labels))
             }
         },
+        
+        #### Plot function ----
         .pareto = function(image, ggtheme, theme, ...) {
             if (is.null(image$state))
                 return(FALSE)
@@ -82,6 +85,8 @@ paretoClass <- R6::R6Class(
             
             return(p)
         },
+        
+        #### Helper functions ----
         .plotSize = function() {
             if (is.null(self$options$x))
                 return(list(width=450, height=350))

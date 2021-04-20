@@ -102,6 +102,7 @@ scatResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 name="scat",
                 title="",
                 renderFun=".scat",
+                requiresData=TRUE,
                 clearWith=list(
                     "x",
                     "y",
