@@ -28,5 +28,7 @@ analyses:
     menuTitle: Pareto Chart
     menuSubgroup: scatr
     description: Function for making pareto charts.
+usesNative: true
+minApp: 1.0.8
 
 ...
