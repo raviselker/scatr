@@ -10,11 +10,4 @@ items:
       description: a scatter plot
       renderFun: .scat
       requiresData: true
-      clearWith:
-        - x
-        - y
-        - group
-        - marg
-        - line
-        - se
 ...

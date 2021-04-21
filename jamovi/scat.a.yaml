@@ -101,3 +101,89 @@ options:
       description:
           R: >
             `TRUE` or `FALSE` (default), show the standard error for the regression line
+
+    - name: xRangeAuto
+      title: Auto
+      type: Bool
+      default: true
+      description:
+          R: >
+            `TRUE` (default) or `FALSE` , automatically determine the range for 
+            the x-axis
+
+    - name: xmin
+      title: Minimum
+      type: Number
+      default: 0
+      description:
+          R: >
+            a number defining the minimum of the scale for the x-axis
+            
+    - name: xmax
+      title: Maximum
+      type: Number
+      default: 10
+      description:
+          R: >
+            a number defining the maximum of the scale for the x-axis
+
+    - name: xBreaksAuto
+      title: Auto
+      type: Bool
+      default: true
+      description:
+          R: >
+            `TRUE` (default) or `FALSE` , automatically determine the number of 
+            breaks for the ticks on the x-axis
+            
+    - name: xNBreaks
+      title: Number of breaks ~
+      type: Number
+      default: 5
+      min: 2
+      description:
+          R: >
+            a number defining the number of ticks breaks for the x-axis
+
+    - name: yRangeAuto
+      title: Auto
+      type: Bool
+      default: true
+      description:
+          R: >
+            `TRUE` (default) or `FALSE` , automatically determine the range for 
+            the y-axis
+
+    - name: ymin
+      title: Minimum
+      type: Number
+      default: 0
+      description:
+          R: >
+            a number defining the minimum of the scale for the y-axis
+            
+    - name: ymax
+      title: Maximum
+      type: Number
+      default: 10
+      description:
+          R: >
+            a number defining the maximum of the scale for the y-axis
+            
+    - name: yBreaksAuto
+      title: Auto
+      type: Bool
+      default: true
+      description:
+          R: >
+            `TRUE` (default) or `FALSE` , automatically determine the number of 
+            breaks for the ticks on the y-axis
+            
+    - name: yNBreaks
+      title: Number of breaks ~
+      type: Number
+      default: 5
+      min: 2 
+      description:
+          R: >
+            a number defining the number of ticks breaks for the y-axis

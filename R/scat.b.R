@@ -63,7 +63,7 @@ scatClass <- R6::R6Class(
                 p <- p + 
                     ggplot2::geom_smooth(method = method, se = self$options$se)
             }
-
+            
             colors <- NULL
             if (is.null(self$options$group)) {
                 colors <- list(
@@ -75,14 +75,39 @@ scatClass <- R6::R6Class(
                     ggplot2::theme(legend.position = "none") + colors
             }
             
+            xBreaks <- ifElseNull(
+                !self$options$xBreaksAuto, self$options$xNBreaks
+            )
+            yBreaks <- ifElseNull(
+                !self$options$yBreaksAuto, self$options$yNBreaks
+            )
+            
+            xLimit <- ifElseNull(
+                ! self$options$xRangeAuto,
+                c(self$options$xmin, self$options$xmax)
+            )
+            yLimit <- ifElseNull(
+                ! self$options$yRangeAuto,
+                c(self$options$ymin, self$options$ymax)
+            )
+            
+            p <- p + 
+                ggplot2::scale_x_continuous(n.breaks=xBreaks, limits=xLimit) +
+                ggplot2::scale_y_continuous(n.breaks=yBreaks, limits=yLimit)
+            
             if (marg == "dens") {
                 xdens <- 
-                    ggplot2::ggplot(data=data, ggplot2::aes(x=y, fill=g)) +
+                    ggplot2::ggplot(data=data, ggplot2::aes(x=x, fill=g)) +
                     ggplot2::geom_density(alpha=0.5, size=.2) + 
                     ggtheme + 
                     ggplot2::theme_void() +
                     ggplot2::theme(legend.position = "none") +
                     colors 
+
+                if (! self$options$xRangeAuto) {
+                    xdens <- xdens + 
+                        ggplot2::xlim(self$options$xmin, self$options$xmax)
+                }
                 
                 ydens <- 
                     ggplot2::ggplot(data=data, ggplot2::aes(x=y, fill=g)) +
@@ -92,6 +117,11 @@ scatClass <- R6::R6Class(
                     ggplot2::theme_void() +
                     ggplot2::theme(legend.position = "none") +
                     colors
+                
+                if (! self$options$xRangeAuto) {
+                    ydens <- ydens + 
+                        ggplot2::xlim(self$options$ymin, self$options$ymax)
+                }
                 
                 p <-
                     xdens + patchwork::plot_spacer() + 
@@ -110,7 +140,6 @@ scatClass <- R6::R6Class(
                     )
             } else if (marg == "box") {
                 themeBox <- ggplot2::theme_void() +
-
                     ggplot2::theme(
                         panel.grid.major = ggplot2::element_blank(),
                         panel.grid.minor = ggplot2::element_blank(),
@@ -137,6 +166,11 @@ scatClass <- R6::R6Class(
                     themeBox + 
                     colors
                 
+                if (! self$options$xRangeAuto) {
+                    xdens <- xdens + 
+                        ggplot2::ylim(self$options$xmin, self$options$xmax)
+                }
+                
                 ydens <- ggplot2::ggplot() +
                     ggplot2::geom_boxplot(
                         data=data, 
@@ -149,6 +183,11 @@ scatClass <- R6::R6Class(
                     ggtheme + 
                     themeBox + 
                     colors
+                
+                if (! self$options$yRangeAuto) {
+                    ydens <- ydens + 
+                        ggplot2::ylim(self$options$ymin, self$options$ymax)
+                }
                 
                 nLevels <- length(levels(data$g))
                 widths <- c(7, 1 + nLevels * 0.2)

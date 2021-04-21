@@ -80,3 +80,91 @@ children:
                 name: marg_box
                 optionName: marg
                 optionPart: box
+  - type: CollapseBox
+    label: X-Axis
+    collapsed: true
+    children:
+      - type: LayoutBox
+        margin: large
+        stretchFactor: 1
+        children:
+          - type: LayoutBox
+            margin: large
+            cell:
+              column: 0
+              row: 0
+            stretchFactor: 1
+            children:
+              - type: Label
+                label: Range
+                children:
+                  - type: CheckBox
+                    name: xRangeAuto
+                  - type: TextBox
+                    name: xmin
+                    format: number
+                    enable: (!xRangeAuto)
+                  - type: TextBox
+                    name: xmax
+                    format: number
+                    enable: (!xRangeAuto)
+          - type: LayoutBox
+            margin: large
+            cell:
+              column: 1
+              row: 0
+            stretchFactor: 1
+            children:
+              - type: Label
+                label: Breaks
+                children:
+                  - type: CheckBox
+                    name: xBreaksAuto
+                  - type: TextBox
+                    name: xNBreaks
+                    format: number
+                    enable: (!xBreaksAuto)
+  - type: CollapseBox
+    label: Y-Axis
+    collapsed: true
+    children:
+      - type: LayoutBox
+        margin: large
+        stretchFactor: 1
+        children:
+          - type: LayoutBox
+            margin: large
+            cell:
+              column: 0
+              row: 0
+            stretchFactor: 1
+            children:
+              - type: Label
+                label: Range
+                children:
+                  - type: CheckBox
+                    name: yRangeAuto
+                  - type: TextBox
+                    name: ymin
+                    format: number
+                    enable: (!yRangeAuto)
+                  - type: TextBox
+                    name: ymax
+                    format: number
+                    enable: (!yRangeAuto)
+          - type: LayoutBox
+            margin: large
+            cell:
+              column: 1
+              row: 0
+            stretchFactor: 1
+            children:
+              - type: Label
+                label: Breaks
+                children:
+                  - type: CheckBox
+                    name: yBreaksAuto
+                  - type: TextBox
+                    name: yNBreaks
+                    format: number
+                    enable: (!yBreaksAuto)

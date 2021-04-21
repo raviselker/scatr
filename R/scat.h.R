@@ -11,7 +11,17 @@ scatOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             group = NULL,
             marg = "none",
             line = "none",
-            se = FALSE, ...) {
+            se = FALSE,
+            xRangeAuto = TRUE,
+            xmin = 0,
+            xmax = 10,
+            xBreaksAuto = TRUE,
+            xNBreaks = 5,
+            yRangeAuto = TRUE,
+            ymin = 0,
+            ymax = 10,
+            yBreaksAuto = TRUE,
+            yNBreaks = 5, ...) {
 
             super$initialize(
                 package="scatr",
@@ -61,6 +71,48 @@ scatOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 "se",
                 se,
                 default=FALSE)
+            private$..xRangeAuto <- jmvcore::OptionBool$new(
+                "xRangeAuto",
+                xRangeAuto,
+                default=TRUE)
+            private$..xmin <- jmvcore::OptionNumber$new(
+                "xmin",
+                xmin,
+                default=0)
+            private$..xmax <- jmvcore::OptionNumber$new(
+                "xmax",
+                xmax,
+                default=10)
+            private$..xBreaksAuto <- jmvcore::OptionBool$new(
+                "xBreaksAuto",
+                xBreaksAuto,
+                default=TRUE)
+            private$..xNBreaks <- jmvcore::OptionNumber$new(
+                "xNBreaks",
+                xNBreaks,
+                default=5,
+                min=2)
+            private$..yRangeAuto <- jmvcore::OptionBool$new(
+                "yRangeAuto",
+                yRangeAuto,
+                default=TRUE)
+            private$..ymin <- jmvcore::OptionNumber$new(
+                "ymin",
+                ymin,
+                default=0)
+            private$..ymax <- jmvcore::OptionNumber$new(
+                "ymax",
+                ymax,
+                default=10)
+            private$..yBreaksAuto <- jmvcore::OptionBool$new(
+                "yBreaksAuto",
+                yBreaksAuto,
+                default=TRUE)
+            private$..yNBreaks <- jmvcore::OptionNumber$new(
+                "yNBreaks",
+                yNBreaks,
+                default=5,
+                min=2)
 
             self$.addOption(private$..x)
             self$.addOption(private$..y)
@@ -68,6 +120,16 @@ scatOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..marg)
             self$.addOption(private$..line)
             self$.addOption(private$..se)
+            self$.addOption(private$..xRangeAuto)
+            self$.addOption(private$..xmin)
+            self$.addOption(private$..xmax)
+            self$.addOption(private$..xBreaksAuto)
+            self$.addOption(private$..xNBreaks)
+            self$.addOption(private$..yRangeAuto)
+            self$.addOption(private$..ymin)
+            self$.addOption(private$..ymax)
+            self$.addOption(private$..yBreaksAuto)
+            self$.addOption(private$..yNBreaks)
         }),
     active = list(
         x = function() private$..x$value,
@@ -75,14 +137,34 @@ scatOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         group = function() private$..group$value,
         marg = function() private$..marg$value,
         line = function() private$..line$value,
-        se = function() private$..se$value),
+        se = function() private$..se$value,
+        xRangeAuto = function() private$..xRangeAuto$value,
+        xmin = function() private$..xmin$value,
+        xmax = function() private$..xmax$value,
+        xBreaksAuto = function() private$..xBreaksAuto$value,
+        xNBreaks = function() private$..xNBreaks$value,
+        yRangeAuto = function() private$..yRangeAuto$value,
+        ymin = function() private$..ymin$value,
+        ymax = function() private$..ymax$value,
+        yBreaksAuto = function() private$..yBreaksAuto$value,
+        yNBreaks = function() private$..yNBreaks$value),
     private = list(
         ..x = NA,
         ..y = NA,
         ..group = NA,
         ..marg = NA,
         ..line = NA,
-        ..se = NA)
+        ..se = NA,
+        ..xRangeAuto = NA,
+        ..xmin = NA,
+        ..xmax = NA,
+        ..xBreaksAuto = NA,
+        ..xNBreaks = NA,
+        ..yRangeAuto = NA,
+        ..ymin = NA,
+        ..ymax = NA,
+        ..yBreaksAuto = NA,
+        ..yNBreaks = NA)
 )
 
 scatResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
@@ -102,14 +184,7 @@ scatResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 name="scat",
                 title="",
                 renderFun=".scat",
-                requiresData=TRUE,
-                clearWith=list(
-                    "x",
-                    "y",
-                    "group",
-                    "marg",
-                    "line",
-                    "se")))}))
+                requiresData=TRUE))}))
 
 scatBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
     "scatBase",
@@ -159,6 +234,20 @@ scatBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #'   regression line
 #' @param se \code{TRUE} or \code{FALSE} (default), show the standard error
 #'   for the regression line
+#' @param xRangeAuto \code{TRUE} (default) or \code{FALSE} , automatically
+#'   determine the range for  the x-axis
+#' @param xmin a number defining the minimum of the scale for the x-axis
+#' @param xmax a number defining the maximum of the scale for the x-axis
+#' @param xBreaksAuto \code{TRUE} (default) or \code{FALSE} , automatically
+#'   determine the number of  breaks for the ticks on the x-axis
+#' @param xNBreaks a number defining the number of ticks breaks for the x-axis
+#' @param yRangeAuto \code{TRUE} (default) or \code{FALSE} , automatically
+#'   determine the range for  the y-axis
+#' @param ymin a number defining the minimum of the scale for the y-axis
+#' @param ymax a number defining the maximum of the scale for the y-axis
+#' @param yBreaksAuto \code{TRUE} (default) or \code{FALSE} , automatically
+#'   determine the number of  breaks for the ticks on the y-axis
+#' @param yNBreaks a number defining the number of ticks breaks for the y-axis
 #' @return A results object containing:
 #' \tabular{llllll}{
 #'   \code{results$scat} \tab \tab \tab \tab \tab a scatter plot \cr
@@ -172,7 +261,17 @@ scat <- function(
     group = NULL,
     marg = "none",
     line = "none",
-    se = FALSE) {
+    se = FALSE,
+    xRangeAuto = TRUE,
+    xmin = 0,
+    xmax = 10,
+    xBreaksAuto = TRUE,
+    xNBreaks = 5,
+    yRangeAuto = TRUE,
+    ymin = 0,
+    ymax = 10,
+    yBreaksAuto = TRUE,
+    yNBreaks = 5) {
 
     if ( ! requireNamespace("jmvcore", quietly=TRUE))
         stop("scat requires jmvcore to be installed (restart may be required)")
@@ -195,7 +294,17 @@ scat <- function(
         group = group,
         marg = marg,
         line = line,
-        se = se)
+        se = se,
+        xRangeAuto = xRangeAuto,
+        xmin = xmin,
+        xmax = xmax,
+        xBreaksAuto = xBreaksAuto,
+        xNBreaks = xNBreaks,
+        yRangeAuto = yRangeAuto,
+        ymin = ymin,
+        ymax = ymax,
+        yBreaksAuto = yBreaksAuto,
+        yNBreaks = yNBreaks)
 
     analysis <- scatClass$new(
         options = options,
