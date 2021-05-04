@@ -98,16 +98,21 @@ children:
               - type: Label
                 label: Range
                 children:
-                  - type: CheckBox
-                    name: xRangeAuto
                   - type: TextBox
                     name: xmin
                     format: number
-                    enable: (!xRangeAuto)
                   - type: TextBox
                     name: xmax
                     format: number
-                    enable: (!xRangeAuto)
+              - type: Label
+                label: Title
+                children:
+                  - type: TextBox
+                    name: xTitle
+                    format: string
+                    width: large
+                  - type: ComboBox
+                    name: xTitleAlign
           - type: LayoutBox
             margin: large
             cell:
@@ -118,12 +123,15 @@ children:
               - type: Label
                 label: Breaks
                 children:
-                  - type: CheckBox
-                    name: xBreaksAuto
                   - type: TextBox
                     name: xNBreaks
                     format: number
-                    enable: (!xBreaksAuto)
+              - type: Label
+                label: Labels
+                children:
+                  - type: TextBox
+                    name: xLabelsAngle
+                    format: number
   - type: CollapseBox
     label: Y-Axis
     collapsed: true
@@ -142,16 +150,21 @@ children:
               - type: Label
                 label: Range
                 children:
-                  - type: CheckBox
-                    name: yRangeAuto
                   - type: TextBox
                     name: ymin
                     format: number
-                    enable: (!yRangeAuto)
                   - type: TextBox
                     name: ymax
                     format: number
-                    enable: (!yRangeAuto)
+              - type: Label
+                label: Title
+                children:
+                  - type: TextBox
+                    name: yTitle
+                    format: string
+                    width: large
+                  - type: ComboBox
+                    name: yTitleAlign
           - type: LayoutBox
             margin: large
             cell:
@@ -162,9 +175,6 @@ children:
               - type: Label
                 label: Breaks
                 children:
-                  - type: CheckBox
-                    name: yBreaksAuto
                   - type: TextBox
                     name: yNBreaks
                     format: number
-                    enable: (!yBreaksAuto)

@@ -47,14 +47,26 @@ scatClass <- R6::R6Class(
             marg <- self$options$marg
             line <- self$options$line
             method <- ifelse(line == "linear", "lm", "auto")
+            
+            xTitle <- ifElseNull(
+                length(self$options$xTitle) > 0,
+                self$options$xTitle,
+                self$options$x
+            )
                     
+            yTitle <- ifElseNull(
+                length(self$options$yTitle) > 0,
+                self$options$yTitle,
+                self$options$y
+            )
+            
             p <- 
                 ggplot2::ggplot(data, ggplot2::aes(x=x, y=y, color=g, fill=g)) + 
                 ggplot2::geom_point(alpha=.8, size=2.5) + 
                 ggtheme +
                 ggplot2::labs(
-                    x=self$options$x, 
-                    y=self$options$y, 
+                    x=xTitle, 
+                    y=yTitle, 
                     fill=self$options$group, 
                     color=self$options$group
                 )
@@ -75,25 +87,28 @@ scatClass <- R6::R6Class(
                     ggplot2::theme(legend.position = "none") + colors
             }
             
-            xBreaks <- ifElseNull(
-                !self$options$xBreaksAuto, self$options$xNBreaks
+            xBreaks <- self$options$xNBreaks
+            yBreaks <- self$options$yNBreaks
+            xLimit <- c(self$options$xmin, self$options$xmax)
+            yLimit <- c(self$options$ymin, self$options$ymax)
+            xTitleHJust <- switch(
+                self$options$xTitleAlign, 
+                "auto"=NULL, "left"=0, "middle"=0.5, "right"=1
             )
-            yBreaks <- ifElseNull(
-                !self$options$yBreaksAuto, self$options$yNBreaks
+            yTitleHJust <- switch(
+                self$options$yTitleAlign, 
+                "auto"=NULL, "bottom"=0, "middle"=0.5, "top"=1
             )
-            
-            xLimit <- ifElseNull(
-                ! self$options$xRangeAuto,
-                c(self$options$xmin, self$options$xmax)
-            )
-            yLimit <- ifElseNull(
-                ! self$options$yRangeAuto,
-                c(self$options$ymin, self$options$ymax)
-            )
+            xLabelsAngle <- self$options$xLabelsAngle
             
             p <- p + 
                 ggplot2::scale_x_continuous(n.breaks=xBreaks, limits=xLimit) +
-                ggplot2::scale_y_continuous(n.breaks=yBreaks, limits=yLimit)
+                ggplot2::scale_y_continuous(n.breaks=yBreaks, limits=yLimit) +
+                ggplot2::theme(
+                    axis.title.x = ggplot2::element_text(hjust = xTitleHJust),
+                    axis.title.y = ggplot2::element_text(hjust = yTitleHJust),
+                    axis.text.x = ggplot2::element_text(angle = xLabelsAngle)
+                )
             
             if (marg == "dens") {
                 xdens <- 

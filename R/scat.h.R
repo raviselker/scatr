@@ -12,16 +12,17 @@ scatOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             marg = "none",
             line = "none",
             se = FALSE,
-            xRangeAuto = TRUE,
-            xmin = 0,
-            xmax = 10,
-            xBreaksAuto = TRUE,
-            xNBreaks = 5,
-            yRangeAuto = TRUE,
-            ymin = 0,
-            ymax = 10,
-            yBreaksAuto = TRUE,
-            yNBreaks = 5, ...) {
+            xmin = NULL,
+            xmax = NULL,
+            xNBreaks = NULL,
+            xTitle = "",
+            xTitleAlign = "auto",
+            xLabelsAngle = NULL,
+            ymin = NULL,
+            ymax = NULL,
+            yNBreaks = NULL,
+            yTitle = "",
+            yTitleAlign = "auto", ...) {
 
             super$initialize(
                 package="scatr",
@@ -71,48 +72,64 @@ scatOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 "se",
                 se,
                 default=FALSE)
-            private$..xRangeAuto <- jmvcore::OptionBool$new(
-                "xRangeAuto",
-                xRangeAuto,
-                default=TRUE)
             private$..xmin <- jmvcore::OptionNumber$new(
                 "xmin",
                 xmin,
-                default=0)
+                default=NULL)
             private$..xmax <- jmvcore::OptionNumber$new(
                 "xmax",
                 xmax,
-                default=10)
-            private$..xBreaksAuto <- jmvcore::OptionBool$new(
-                "xBreaksAuto",
-                xBreaksAuto,
-                default=TRUE)
-            private$..xNBreaks <- jmvcore::OptionNumber$new(
+                default=NULL)
+            private$..xNBreaks <- jmvcore::OptionInteger$new(
                 "xNBreaks",
                 xNBreaks,
-                default=5,
+                default=NULL,
                 min=2)
-            private$..yRangeAuto <- jmvcore::OptionBool$new(
-                "yRangeAuto",
-                yRangeAuto,
-                default=TRUE)
+            private$..xTitle <- jmvcore::OptionString$new(
+                "xTitle",
+                xTitle,
+                default="")
+            private$..xTitleAlign <- jmvcore::OptionList$new(
+                "xTitleAlign",
+                xTitleAlign,
+                options=list(
+                    "auto",
+                    "left",
+                    "middle",
+                    "right"),
+                default="auto")
+            private$..xLabelsAngle <- jmvcore::OptionNumber$new(
+                "xLabelsAngle",
+                xLabelsAngle,
+                min=0,
+                max=90,
+                default=NULL)
             private$..ymin <- jmvcore::OptionNumber$new(
                 "ymin",
                 ymin,
-                default=0)
+                default=NULL)
             private$..ymax <- jmvcore::OptionNumber$new(
                 "ymax",
                 ymax,
-                default=10)
-            private$..yBreaksAuto <- jmvcore::OptionBool$new(
-                "yBreaksAuto",
-                yBreaksAuto,
-                default=TRUE)
-            private$..yNBreaks <- jmvcore::OptionNumber$new(
+                default=NULL)
+            private$..yNBreaks <- jmvcore::OptionInteger$new(
                 "yNBreaks",
                 yNBreaks,
-                default=5,
+                default=NULL,
                 min=2)
+            private$..yTitle <- jmvcore::OptionString$new(
+                "yTitle",
+                yTitle,
+                default="")
+            private$..yTitleAlign <- jmvcore::OptionList$new(
+                "yTitleAlign",
+                yTitleAlign,
+                options=list(
+                    "auto",
+                    "top",
+                    "middle",
+                    "bottom"),
+                default="auto")
 
             self$.addOption(private$..x)
             self$.addOption(private$..y)
@@ -120,16 +137,17 @@ scatOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..marg)
             self$.addOption(private$..line)
             self$.addOption(private$..se)
-            self$.addOption(private$..xRangeAuto)
             self$.addOption(private$..xmin)
             self$.addOption(private$..xmax)
-            self$.addOption(private$..xBreaksAuto)
             self$.addOption(private$..xNBreaks)
-            self$.addOption(private$..yRangeAuto)
+            self$.addOption(private$..xTitle)
+            self$.addOption(private$..xTitleAlign)
+            self$.addOption(private$..xLabelsAngle)
             self$.addOption(private$..ymin)
             self$.addOption(private$..ymax)
-            self$.addOption(private$..yBreaksAuto)
             self$.addOption(private$..yNBreaks)
+            self$.addOption(private$..yTitle)
+            self$.addOption(private$..yTitleAlign)
         }),
     active = list(
         x = function() private$..x$value,
@@ -138,16 +156,17 @@ scatOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         marg = function() private$..marg$value,
         line = function() private$..line$value,
         se = function() private$..se$value,
-        xRangeAuto = function() private$..xRangeAuto$value,
         xmin = function() private$..xmin$value,
         xmax = function() private$..xmax$value,
-        xBreaksAuto = function() private$..xBreaksAuto$value,
         xNBreaks = function() private$..xNBreaks$value,
-        yRangeAuto = function() private$..yRangeAuto$value,
+        xTitle = function() private$..xTitle$value,
+        xTitleAlign = function() private$..xTitleAlign$value,
+        xLabelsAngle = function() private$..xLabelsAngle$value,
         ymin = function() private$..ymin$value,
         ymax = function() private$..ymax$value,
-        yBreaksAuto = function() private$..yBreaksAuto$value,
-        yNBreaks = function() private$..yNBreaks$value),
+        yNBreaks = function() private$..yNBreaks$value,
+        yTitle = function() private$..yTitle$value,
+        yTitleAlign = function() private$..yTitleAlign$value),
     private = list(
         ..x = NA,
         ..y = NA,
@@ -155,16 +174,17 @@ scatOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..marg = NA,
         ..line = NA,
         ..se = NA,
-        ..xRangeAuto = NA,
         ..xmin = NA,
         ..xmax = NA,
-        ..xBreaksAuto = NA,
         ..xNBreaks = NA,
-        ..yRangeAuto = NA,
+        ..xTitle = NA,
+        ..xTitleAlign = NA,
+        ..xLabelsAngle = NA,
         ..ymin = NA,
         ..ymax = NA,
-        ..yBreaksAuto = NA,
-        ..yNBreaks = NA)
+        ..yNBreaks = NA,
+        ..yTitle = NA,
+        ..yTitleAlign = NA)
 )
 
 scatResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
@@ -234,20 +254,24 @@ scatBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #'   regression line
 #' @param se \code{TRUE} or \code{FALSE} (default), show the standard error
 #'   for the regression line
-#' @param xRangeAuto \code{TRUE} (default) or \code{FALSE} , automatically
-#'   determine the range for  the x-axis
 #' @param xmin a number defining the minimum of the scale for the x-axis
 #' @param xmax a number defining the maximum of the scale for the x-axis
-#' @param xBreaksAuto \code{TRUE} (default) or \code{FALSE} , automatically
-#'   determine the number of  breaks for the ticks on the x-axis
 #' @param xNBreaks a number defining the number of ticks breaks for the x-axis
-#' @param yRangeAuto \code{TRUE} (default) or \code{FALSE} , automatically
-#'   determine the range for  the y-axis
+#' @param xTitle a string (default: '') describing the title used for the
+#'   x-axis
+#' @param xTitleAlign \code{auto} (default), \code{left}, \code{middle}, or
+#'   \code{right}, align the x-axis  title respectively automatically, to the
+#'   left, middle, or right  side on the x-axis
+#' @param xLabelsAngle a number from 0 to 90 defining the angle of the x-axis
+#'   labels,  where 0 degrees represents completely horizontal labels.
 #' @param ymin a number defining the minimum of the scale for the y-axis
 #' @param ymax a number defining the maximum of the scale for the y-axis
-#' @param yBreaksAuto \code{TRUE} (default) or \code{FALSE} , automatically
-#'   determine the number of  breaks for the ticks on the y-axis
 #' @param yNBreaks a number defining the number of ticks breaks for the y-axis
+#' @param yTitle a string (default: '') describing the title used for the
+#'   y-axis
+#' @param yTitleAlign \code{auto} (default), \code{top}, \code{middle}, or
+#'   \code{bottom}, align the y-axis  title respectively automatically, to the
+#'   top, middle, or bottom of  the y-axis
 #' @return A results object containing:
 #' \tabular{llllll}{
 #'   \code{results$scat} \tab \tab \tab \tab \tab a scatter plot \cr
@@ -262,16 +286,17 @@ scat <- function(
     marg = "none",
     line = "none",
     se = FALSE,
-    xRangeAuto = TRUE,
-    xmin = 0,
-    xmax = 10,
-    xBreaksAuto = TRUE,
-    xNBreaks = 5,
-    yRangeAuto = TRUE,
-    ymin = 0,
-    ymax = 10,
-    yBreaksAuto = TRUE,
-    yNBreaks = 5) {
+    xmin = NULL,
+    xmax = NULL,
+    xNBreaks = NULL,
+    xTitle = "",
+    xTitleAlign = "auto",
+    xLabelsAngle = NULL,
+    ymin = NULL,
+    ymax = NULL,
+    yNBreaks = NULL,
+    yTitle = "",
+    yTitleAlign = "auto") {
 
     if ( ! requireNamespace("jmvcore", quietly=TRUE))
         stop("scat requires jmvcore to be installed (restart may be required)")
@@ -295,16 +320,17 @@ scat <- function(
         marg = marg,
         line = line,
         se = se,
-        xRangeAuto = xRangeAuto,
         xmin = xmin,
         xmax = xmax,
-        xBreaksAuto = xBreaksAuto,
         xNBreaks = xNBreaks,
-        yRangeAuto = yRangeAuto,
+        xTitle = xTitle,
+        xTitleAlign = xTitleAlign,
+        xLabelsAngle = xLabelsAngle,
         ymin = ymin,
         ymax = ymax,
-        yBreaksAuto = yBreaksAuto,
-        yNBreaks = yNBreaks)
+        yNBreaks = yNBreaks,
+        yTitle = yTitle,
+        yTitleAlign = yTitleAlign)
 
     analysis <- scatClass$new(
         options = options,

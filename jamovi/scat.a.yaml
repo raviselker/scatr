@@ -102,19 +102,10 @@ options:
           R: >
             `TRUE` or `FALSE` (default), show the standard error for the regression line
 
-    - name: xRangeAuto
-      title: Auto
-      type: Bool
-      default: true
-      description:
-          R: >
-            `TRUE` (default) or `FALSE` , automatically determine the range for 
-            the x-axis
-
     - name: xmin
       title: Minimum
       type: Number
-      default: 0
+      default: null
       description:
           R: >
             a number defining the minimum of the scale for the x-axis
@@ -122,42 +113,62 @@ options:
     - name: xmax
       title: Maximum
       type: Number
-      default: 10
+      default: null
       description:
           R: >
             a number defining the maximum of the scale for the x-axis
-
-    - name: xBreaksAuto
-      title: Auto
-      type: Bool
-      default: true
-      description:
-          R: >
-            `TRUE` (default) or `FALSE` , automatically determine the number of 
-            breaks for the ticks on the x-axis
             
     - name: xNBreaks
       title: Number of breaks ~
-      type: Number
-      default: 5
+      type: Integer
+      default: null
       min: 2
       description:
           R: >
             a number defining the number of ticks breaks for the x-axis
-
-    - name: yRangeAuto
-      title: Auto
-      type: Bool
-      default: true
+            
+    - name: xTitle
+      title: Title
+      type: String
+      default: ''
       description:
           R: >
-            `TRUE` (default) or `FALSE` , automatically determine the range for 
-            the y-axis
+            a string (default: '') describing the title used for the x-axis
+            
+    - name: xTitleAlign
+      title: Align
+      type: List
+      options:
+        - title: Auto
+          name: auto
+        - title: Left
+          name: left
+        - title: Middle
+          name: middle
+        - title: Right
+          name: right
+      default: auto
+      description:
+          R: >
+            `auto` (default), `left`, `middle`, or `right`, align the x-axis 
+            title respectively automatically, to the left, middle, or right 
+            side on the x-axis
+
+    - name: xLabelsAngle
+      title: Angle
+      type: Number
+      min: 0
+      max: 90
+      default: null
+      description:
+          R: >
+            a number from 0 to 90 defining the angle of the x-axis labels, 
+            where 0 degrees represents completely horizontal labels.
 
     - name: ymin
       title: Minimum
       type: Number
-      default: 0
+      default: null
       description:
           R: >
             a number defining the minimum of the scale for the y-axis
@@ -165,25 +176,44 @@ options:
     - name: ymax
       title: Maximum
       type: Number
-      default: 10
+      default: null
       description:
           R: >
             a number defining the maximum of the scale for the y-axis
             
-    - name: yBreaksAuto
-      title: Auto
-      type: Bool
-      default: true
-      description:
-          R: >
-            `TRUE` (default) or `FALSE` , automatically determine the number of 
-            breaks for the ticks on the y-axis
-            
     - name: yNBreaks
       title: Number of breaks ~
-      type: Number
-      default: 5
+      type: Integer
+      default: null
       min: 2 
       description:
           R: >
             a number defining the number of ticks breaks for the y-axis
+            
+    - name: yTitle
+      title: Title
+      type: String
+      default: ''
+      description:
+          R: >
+            a string (default: '') describing the title used for the y-axis
+            
+    - name: yTitleAlign
+      title: Align
+      type: List
+      options:
+        - title: Auto
+          name: auto
+        - title: Top
+          name: top
+        - title: Middle
+          name: middle
+        - title: Bottom
+          name: bottom
+      default: auto
+      description:
+          R: >
+            `auto` (default), `top`, `middle`, or `bottom`, align the y-axis 
+            title respectively automatically, to the top, middle, or bottom of 
+            the y-axis
+
