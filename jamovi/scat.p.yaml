@@ -1,0 +1,69 @@
+'scat':
+    - name: xaxis
+      title: X-Axis
+      type: group
+      children:
+        - name: min
+          title: Minimum
+          type: Number
+          default: null
+        - name: max
+          title: Maximum
+          type: Number
+          default: null
+        - name: nBreaks
+          title: Number of breaks ~
+          type: Integer
+          default: null
+          min: 2
+        - name: title
+          title: Title
+          type: String
+          default: ''
+        - name: titleAlign
+          title: Align
+          type: List
+          options:
+            - title: Auto
+              name: auto
+            - title: Left
+              name: left
+            - title: Middle
+              name: middle
+            - title: Right
+              name: right
+          default: auto
+    - name: yaxis
+      title: Y-Axis
+      type: group
+      children:
+        - name: min
+          title: Minimum
+          type: Number
+          default: null
+        - name: max
+          title: Maximum
+          type: Number
+          default: null
+        - name: nBreaks
+          title: Number of breaks ~
+          type: Integer
+          default: null
+          min: 2
+        - name: title
+          title: Title
+          type: String
+          default: ''
+        - name: titleAlign
+          title: Align
+          type: List
+          options:
+            - title: Auto
+              name: auto
+            - title: Left
+              name: left
+            - title: Middle
+              name: middle
+            - title: Right
+              name: right
+          default: auto
