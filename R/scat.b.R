@@ -49,13 +49,13 @@ scatClass <- R6::R6Class(
             method <- ifelse(line == "linear", "lm", "auto")
             
             xTitle <- ifElseNull(
-                length(self$options$xTitle) > 0,
+                nchar(self$options$xTitle) > 0,
                 self$options$xTitle,
                 self$options$x
             )
                     
             yTitle <- ifElseNull(
-                length(self$options$yTitle) > 0,
+                nchar(self$options$yTitle) > 0,
                 self$options$yTitle,
                 self$options$y
             )
@@ -117,12 +117,8 @@ scatClass <- R6::R6Class(
                     ggtheme + 
                     ggplot2::theme_void() +
                     ggplot2::theme(legend.position = "none") +
-                    colors 
-
-                if (! self$options$xRangeAuto) {
-                    xdens <- xdens + 
-                        ggplot2::xlim(self$options$xmin, self$options$xmax)
-                }
+                    colors +
+                    ggplot2::scale_x_continuous(limits=xLimit)
                 
                 ydens <- 
                     ggplot2::ggplot(data=data, ggplot2::aes(x=y, fill=g)) +
@@ -131,12 +127,8 @@ scatClass <- R6::R6Class(
                     ggtheme + 
                     ggplot2::theme_void() +
                     ggplot2::theme(legend.position = "none") +
-                    colors
-                
-                if (! self$options$xRangeAuto) {
-                    ydens <- ydens + 
-                        ggplot2::xlim(self$options$ymin, self$options$ymax)
-                }
+                    colors +
+                    ggplot2::scale_x_continuous(limits=yLimit)
                 
                 p <-
                     xdens + patchwork::plot_spacer() + 
@@ -179,12 +171,8 @@ scatClass <- R6::R6Class(
                     ggplot2::coord_flip() +
                     ggtheme + 
                     themeBox + 
-                    colors
-                
-                if (! self$options$xRangeAuto) {
-                    xdens <- xdens + 
-                        ggplot2::ylim(self$options$xmin, self$options$xmax)
-                }
+                    colors +
+                    ggplot2::scale_y_continuous(limits=xLimit)
                 
                 ydens <- ggplot2::ggplot() +
                     ggplot2::geom_boxplot(
@@ -197,12 +185,8 @@ scatClass <- R6::R6Class(
                     ) + 
                     ggtheme + 
                     themeBox + 
-                    colors
-                
-                if (! self$options$yRangeAuto) {
-                    ydens <- ydens + 
-                        ggplot2::ylim(self$options$ymin, self$options$ymax)
-                }
+                    colors +
+                    ggplot2::scale_y_continuous(limits=yLimit)
                 
                 nLevels <- length(levels(data$g))
                 widths <- c(7, 1 + nLevels * 0.2)
@@ -217,7 +201,7 @@ scatClass <- R6::R6Class(
                         widths = widths, 
                         heights = heights,
                         guides = "collect"
-                    ) & 
+                    ) + 
                     ggplot2::theme(
                         plot.background = ggplot2::element_rect(
                             fill = "transparent", colour = NA
