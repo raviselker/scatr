@@ -1,6 +1,9 @@
 # scatr
 
-`scatr` allows you to make clean, good-looking scatter plots in [jamovi](https://www.jamovi.org) **and** R. With `scatr` you can easily add marginal density or box plots, and linear regression lines to your scatter plots.
+`scatr` allows you to make clean, good-looking scatter plots in 
+[jamovi](https://www.jamovi.org) **and** R. With `scatr` you can easily add 
+marginal density or box plots, and linear regression lines to your scatter 
+plots.
 
 ## Installation in jamovi
 

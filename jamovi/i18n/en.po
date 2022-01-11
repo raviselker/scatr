@@ -1,0 +1,191 @@
+msgid ""
+msgstr ""
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2021-07-26 12:08:06+01000\n"
+"PO-Revision-Date: 2021-07-29 16:59:59+01000\n"
+"Language: en\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+
+#: package.description
+msgid "Allows you to produce several types of explorative plots such as scatter plots and pareto charts. You can find it under the 'Exploration' menu."
+msgstr ""
+
+#: pareto/options/angle.title
+msgid "Angle of x-axis labels"
+msgstr ""
+
+#: scat/options/marg/box.title
+msgid "Boxplots"
+msgstr ""
+
+#: R/pareto.b.R
+msgid "Counts"
+msgstr ""
+
+#: pareto/options/counts.title
+#: pareto/ui[0][1].label
+msgid "Counts (optional)"
+msgstr ""
+
+#: R/pareto.b.R
+msgid "Cumalitive Percentage"
+msgstr ""
+
+#: scat/options/marg/dens.title
+msgid "Densities"
+msgstr ""
+
+#: package/analyses/scat.menuGroup
+#: package/analyses/pareto.menuGroup
+#: pareto/options.menuGroup
+#: scat/options.menuGroup
+msgid "Exploration"
+msgstr ""
+
+#: package/analyses/scat.description
+#: scat/options.description.main
+msgid "Function for making clean, good looking scatter plots with the option to add marginal denisty or box plots."
+msgstr ""
+
+#: package/analyses/pareto.description
+#: pareto/options.description.main
+msgid "Function for making pareto charts."
+msgstr ""
+
+#: scat/options/group.title
+#: scat/ui[0][2].label
+msgid "Group"
+msgstr ""
+
+#: scat/options/line/linear.title
+msgid "Linear"
+msgstr ""
+
+#: scat/options/marg.title
+#: scat/ui[1][1][0].label
+msgid "Marginals"
+msgstr ""
+
+#: scat/options/marg/none.title
+#: scat/options/line/none.title
+msgid "None"
+msgstr ""
+
+#: package/analyses/pareto.title
+#: package/analyses/pareto.menuTitle
+#: pareto/options.title
+#: pareto/ui.title
+#: pareto/results.title
+msgid "Pareto Chart"
+msgstr ""
+
+#: scat/options/line.title
+#: scat/ui[1][0][0].label
+msgid "Regression Line"
+msgstr ""
+
+#: package/analyses/scat.title
+#: package/analyses/scat.menuTitle
+#: scat/options.title
+#: scat/ui.title
+#: scat/results.title
+msgid "Scatterplot"
+msgstr ""
+
+#: scat/options/line/smooth.title
+msgid "Smooth"
+msgstr ""
+
+#: scat/options/se.title
+msgid "Standard error"
+msgstr ""
+
+#: pareto/options/x.title
+#: pareto/ui[0][0].label
+#: scat/options/x.title
+#: scat/ui[0][0].label
+msgid "X-Axis"
+msgstr ""
+
+#: scat/options/y.title
+#: scat/ui[0][1].label
+msgid "Y-Axis"
+msgstr ""
+
+#: scat/options/se.description.R
+msgid "`TRUE` or `FALSE` (default), show the standard error for the regression line"
+msgstr ""
+
+#: scat/options/marg.description.R
+msgid "`none` (default), `dens`, or `box`, provide respectively no plots, density plots, or box plots on the axes"
+msgstr ""
+
+#: scat/options/line.description.R
+msgid "`none` (default), `linear`, or `smooth`, provide respectively no regression line,  a linear regression line, or a smoothed regression line"
+msgstr ""
+
+#: pareto/results/pareto.description
+msgid "a Pareto chart"
+msgstr ""
+
+#: pareto/options/angle.description.R
+msgid "a number from 0 to 45 defining the angle of the x-axis labels,  where 0 degrees represents completely horizontal labels."
+msgstr ""
+
+#: scat/results/scat.description
+msgid "a scatter plot"
+msgstr ""
+
+#: pareto/options/counts.description.R
+msgid "a string naming the variable from `data` that contains the  counts for the values (optional)"
+msgstr ""
+
+#: pareto/options/x.description.R
+msgid "a string naming the variable from `data` that contains the  values used for the chart"
+msgstr ""
+
+#: scat/options/x.description.R
+msgid "a string naming the variable from `data` that contains the  x coordinates of the points in the plot, variable must be numeric"
+msgstr ""
+
+#: scat/options/y.description.R
+msgid "a string naming the variable from `data` that contains the  y coordinates of the points in the plot, variable must be numeric"
+msgstr ""
+
+#: scat/options/group.description.R
+msgid "a string naming the variable from `data` that represents the  grouping variable"
+msgstr ""
+
+#: package.title
+#: package/analyses/scat.menuSubgroup
+#: package/analyses/pareto.menuSubgroup
+#: pareto/options.menuSubgroup
+#: scat/options.menuSubgroup
+msgid "scatr"
+msgstr ""
+
+#: scat/options.description.R.usage
+msgid "set.seed(1337)\n"
+"\n"
+"X <- rnorm(100)\n"
+"Y <- 0.5*X + rnorm(100)\n"
+"dat <- data.frame(X = X, Y = Y)\n"
+"\n"
+"scat(dat, x = 'X', y = 'Y', line = 'linear', se = TRUE, marg = 'dens')"
+msgstr ""
+
+#: pareto/options.description.R.usage
+msgid "set.seed(1337)\n"
+"\n"
+"X <- sample(c('A','B','C','D','E','F'), 100, replace=TRUE)\n"
+"dat <- data.frame(X = X)\n"
+"\n"
+"pareto(dat, x = 'X')"
+msgstr ""
+
+#: pareto/options/data.description.R
+#: scat/options/data.description.R
+msgid "the data as a data frame"
+msgstr ""

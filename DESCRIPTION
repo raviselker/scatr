@@ -1,21 +1,22 @@
 Package: scatr
 Type: Package
 Title: Create Scatter Plots with Marginal Density or Box Plots
-Version: 1.2.0
-Date: 2019-11-07
+Version: 2.0.0
+Date: 2021-01-11
 Author: Ravi Selker
 Maintainer: Ravi Selker <selker.ravi@gmail.com>
-Description: Allows you to make clean, good-looking scatter plots with the option to 
-    easily add marginal density or box plots on the axes. It is also available as a module for 'jamovi'
-    (see <https://www.jamovi.org> for more information). 'Scatr' is based on the 
-    'cowplot' package by Claus O. Wilke and the 'ggplot2' package by Hadley Wickham.
+Description: Allows you to make clean, good-looking scatter plots with the 
+    option to easily add marginal density or box plots on the axes. It is also 
+    available as a module for 'jamovi' (see <https://www.jamovi.org> for more 
+    information). 'Scatr' is based on the 'cowplot' package by Claus O. Wilke 
+    and the 'ggplot2' package by Hadley Wickham.
 License: GPL (>= 2)
 Encoding: UTF-8
 LazyData: true
 Depends:
     R (>= 3.2)
 Imports: 
-    jmvcore (>= 1.0.0),
+    jmvcore (>= 2.2.0),
     R6, 
     ggplot2, 
     cowplot, 
