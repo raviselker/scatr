@@ -145,7 +145,7 @@ scatClass <- R6::R6Class(
                             themeBox + 
                             colors
                         
-                        nLevels <- length(levels(data$g))
+                        nLevels <- max(1, length(levels(data$g)), na.rm = TRUE)
 
                         p <- cowplot::insert_xaxis_grob(
                             p, 
