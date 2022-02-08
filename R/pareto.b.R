@@ -1,4 +1,5 @@
 
+#' @importFrom jmvcore .
 paretoClass <- R6::R6Class(
     "paretoClass",
     inherit = paretoBase,

@@ -2,3 +2,4 @@
 
 export(pareto)
 export(scat)
+importFrom(jmvcore,.)

@@ -1,4 +1,5 @@
 
+#' @importFrom jmvcore .
 scatClass <- R6::R6Class(
     "scatClass",
     inherit = scatBase,

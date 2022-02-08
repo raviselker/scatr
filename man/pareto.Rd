@@ -4,7 +4,7 @@
 \alias{pareto}
 \title{Pareto Chart}
 \usage{
-pareto(data, x, counts = NULL)
+pareto(data, x, counts = NULL, angle = 0)
 }
 \arguments{
 \item{data}{the data as a data frame}
@@ -14,6 +14,9 @@ values used for the chart}
 
 \item{counts}{a string naming the variable from \code{data} that contains
 the  counts for the values (optional)}
+
+\item{angle}{a number from 0 to 45 defining the angle of the x-axis labels,
+where 0 degrees represents completely horizontal labels.}
 }
 \value{
 A results object containing:
