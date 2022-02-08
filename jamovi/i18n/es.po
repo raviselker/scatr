@@ -22,12 +22,12 @@ msgstr "Diagramas de caja"
 
 #: R/pareto.b.R
 msgid "Counts"
-msgstr "Recuentos"
+msgstr "Frecuencias"
 
 #: pareto/options/counts.title
 #: pareto/ui[0][1].label
 msgid "Counts (optional)"
-msgstr "Recuentos (opcional)"
+msgstr "Frecuencias (opcional)"
 
 #: R/pareto.b.R
 msgid "Cumalitive Percentage"
