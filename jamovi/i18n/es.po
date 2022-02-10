@@ -1,0 +1,202 @@
+msgid ""
+msgstr ""
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2021-07-26 12:08:06+01000\n"
+"PO-Revision-Date: 2021-07-29 16:59:59+01000\n"
+"Language: en\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+
+#: package.description
+msgid "Allows you to produce several types of explorative plots such as scatter plots and pareto charts. You can find it under the 'Exploration' menu."
+msgstr "Permite producir varios tipos de diagramas exploratorios, como diagramas de dispersión y diagramas de Pareto. Puede encontrarlo en el menú 'Exploración'."
+
+#: pareto/options/angle.title
+msgid "Angle of x-axis labels"
+msgstr "Ángulo de las etiquetas del eje x"
+
+#: scat/options/marg/box.title
+msgid "Boxplots"
+msgstr "Diagramas de caja"
+
+#: R/pareto.b.R
+msgid "Counts"
+msgstr "Frecuencias"
+
+#: pareto/options/counts.title
+#: pareto/ui[0][1].label
+msgid "Counts (optional)"
+msgstr "Frecuencias (opcional)"
+
+#: R/pareto.b.R
+msgid "Cumalitive Percentage"
+msgstr "Porcentaje Acumulado"
+
+#: scat/options/marg/dens.title
+msgid "Densities"
+msgstr "Densidades"
+
+#: package/analyses/scat.menuGroup
+#: package/analyses/pareto.menuGroup
+#: pareto/options.menuGroup
+#: scat/options.menuGroup
+msgid "Exploration"
+msgstr "Exploración"
+
+#: package/analyses/scat.description
+#: scat/options.description.main
+msgid "Function for making clean, good looking scatter plots with the option to add marginal density or box plots."
+msgstr "Función para hacer diagramas de dispersión limpios y atractivos con la opción de agregar densidad marginal o diagramas de caja."
+
+#: package/analyses/pareto.description
+#: pareto/options.description.main
+msgid "Function for making Pareto charts."
+msgstr "Función para hacer diagramas de Pareto."
+
+#: scat/options/group.title
+#: scat/ui[0][2].label
+msgid "Group"
+msgstr "Grupo"
+
+#: scat/options/line/linear.title
+msgid "Linear"
+msgstr "Lineal"
+
+#: scat/options/marg.title
+#: scat/ui[1][1][0].label
+msgid "Marginals"
+msgstr "Marginales"
+
+#: scat/options/marg/none.title
+#: scat/options/line/none.title
+msgid "None"
+msgstr "Ninguna"
+
+#: package/analyses/pareto.title
+#: package/analyses/pareto.menuTitle
+#: pareto/options.title
+#: pareto/ui.title
+#: pareto/results.title
+msgid "Pareto Chart"
+msgstr "Diagrama de Pareto"
+
+#: scat/options/line.title
+#: scat/ui[1][0][0].label
+msgid "Regression Line"
+msgstr "Línea de Regresión"
+
+#: package/analyses/scat.title
+#: package/analyses/scat.menuTitle
+#: scat/options.title
+#: scat/ui.title
+#: scat/results.title
+msgid "Scatterplot"
+msgstr "Gráfico de dispersión"
+
+#: scat/options/line/smooth.title
+msgid "Smooth"
+msgstr "Suavizada"
+
+#: scat/options/se.title
+msgid "Standard error"
+msgstr "Error estándar"
+
+#: pareto/options/x.title
+#: pareto/ui[0][0].label
+#: scat/options/x.title
+#: scat/ui[0][0].label
+msgid "X-Axis"
+msgstr "Eje-X"
+
+#: scat/options/y.title
+#: scat/ui[0][1].label
+msgid "Y-Axis"
+msgstr "Eje-Y"
+
+#: scat/options/se.description.R
+msgid "`TRUE` or `FALSE` (default), show the standard error for the regression line"
+msgstr "`TRUE` o `FALSE` (predeterminado), muestra el error estándar para la línea de regresión"
+
+#: scat/options/marg.description.R
+msgid "`none` (default), `dens`, or `box`, provide respectively no plots, density plots, or box plots on the axes"
+msgstr "`none` (predeterminado), `dens` o `box`, proporcionan, respectivamente, ningún gráfico, gráficos de densidad o gráficos de caja en los ejes"
+
+#: scat/options/line.description.R
+msgid "`none` (default), `linear`, or `smooth`, provide respectively no regression line,  a linear regression line, or a smoothed regression line"
+msgstr "`none` (predeterminado), `linear` o `smooth`, proporcionan, respectivamente, ninguna línea de regresión, una línea de regresión lineal o una línea de regresión suavizada"
+
+#: pareto/results/pareto.description
+msgid "a Pareto chart"
+msgstr "un diagrama de Pareto"
+
+#: pareto/options/angle.description.R
+msgid "a number from 0 to 45 defining the angle of the x-axis labels,  where 0 degrees represents completely horizontal labels."
+msgstr "un número de 0 a 45 que define el ángulo de las etiquetas del eje x, donde 0 grados representa etiquetas completamente horizontales."
+
+#: scat/results/scat.description
+msgid "a scatter plot"
+msgstr "un diagrama de dispersión"
+
+#: pareto/options/counts.description.R
+msgid "a string naming the variable from `data` that contains the  counts for the values (optional)"
+msgstr "una cadena que nombra la variable de `data` que contiene los recuentos de los valores (opcional)"
+
+#: pareto/options/x.description.R
+msgid "a string naming the variable from `data` that contains the  values used for the chart"
+msgstr "una cadena que nombra la variable de `data` que contiene los valores utilizados para el gráfico"
+
+#: scat/options/x.description.R
+msgid "a string naming the variable from `data` that contains the  x coordinates of the points in the plot, variable must be numeric"
+msgstr "una cadena que nombra la variable de `data` que contiene las coordenadas x de los puntos en el gráfico, la variable debe ser numérica"
+
+#: scat/options/y.description.R
+msgid "a string naming the variable from `data` that contains the  y coordinates of the points in the plot, variable must be numeric"
+msgstr "una cadena que nombra la variable de `data` que contiene las coordenadas y de los puntos en el gráfico, la variable debe ser numérica"
+
+#: scat/options/group.description.R
+msgid "a string naming the variable from `data` that represents the  grouping variable"
+msgstr "una cadena que nombra la variable de `data` que representa la variable de agrupación"
+
+#: package.title
+#: package/analyses/scat.menuSubgroup
+#: package/analyses/pareto.menuSubgroup
+#: pareto/options.menuSubgroup
+#: scat/options.menuSubgroup
+msgid "scatr"
+msgstr "scatr"
+
+#: scat/options.description.R.usage
+msgid "set.seed(1337)\n"
+"\n"
+"X <- rnorm(100)\n"
+"Y <- 0.5*X + rnorm(100)\n"
+"dat <- data.frame(X = X, Y = Y)\n"
+"\n"
+"scat(dat, x = 'X', y = 'Y', line = 'linear', se = TRUE, marg = 'dens')"
+msgstr "set.seed(1337)\n"
+"\n"
+"X <- rnorm(100)\n"
+"Y <- 0.5*X + rnorm(100)\n"
+"dat <- data.frame(X = X, Y = Y)\n"
+"\n"
+"scat(dat, x = 'X', y = 'Y', line = 'linear', se = TRUE, marg = 'dens')"
+
+#: pareto/options.description.R.usage
+msgid "set.seed(1337)\n"
+"\n"
+"X <- sample(c('A','B','C','D','E','F'), 100, replace=TRUE)\n"
+"dat <- data.frame(X = X)\n"
+"\n"
+"pareto(dat, x = 'X')"
+msgstr "set.seed(1337)\n"
+"\n"
+"X <- sample(c('A','B','C','D','E','F'), 100, replace=TRUE)\n"
+"dat <- data.frame(X = X)\n"
+"\n"
+"pareto(dat, x = 'X')"
+
+#: pareto/options/data.description.R
+#: scat/options/data.description.R
+msgid "the data as a data frame"
+msgstr "los datos como una 'data frame'"
