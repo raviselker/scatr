@@ -33,6 +33,6 @@ set.seed(1337)
 X <- sample(c('A','B','C','D','E','F'), 100, replace=TRUE)
 dat <- data.frame(X = X)
 
-pareto(dat, x = 'X')
+scatr::pareto(dat, x = 'X')
 
 }

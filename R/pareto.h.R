@@ -104,7 +104,7 @@ paretoBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' X <- sample(c('A','B','C','D','E','F'), 100, replace=TRUE)
 #' dat <- data.frame(X = X)
 #'
-#' pareto(dat, x = 'X')
+#' scatr::pareto(dat, x = 'X')
 #'
 #' @param data the data as a data frame
 #' @param x a string naming the variable from \code{data} that contains the

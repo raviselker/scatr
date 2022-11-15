@@ -142,7 +142,7 @@ scatBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' Y <- 0.5*X + rnorm(100)
 #' dat <- data.frame(X = X, Y = Y)
 #'
-#' scat(dat, x = 'X', y = 'Y', line = 'linear', se = TRUE, marg = 'dens')
+#' scatr::scat(dat, x = 'X', y = 'Y', line = 'linear', se = TRUE, marg = 'dens')
 #'
 #' @param data the data as a data frame
 #' @param x a string naming the variable from \code{data} that contains the  x
