@@ -15,7 +15,7 @@ Encoding: UTF-8
 Depends:
     R (>= 3.2)
 Imports: 
-    jmvcore (>= 2.2.0),
+    jmvcore (>= 2.3.19),
     R6, 
     ggplot2, 
     cowplot, 
